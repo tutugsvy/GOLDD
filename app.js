@@ -4111,15 +4111,19 @@ async function loadCsv() {
   }
 }
 
-els.searchInput.addEventListener("input", () => {
-  resetPointsLimit();
-  render();
-});
-els.sortSelect.addEventListener("change", () => {
-  state.sort = els.sortSelect.value;
-  resetPointsLimit();
-  render();
-});
+if (els.searchInput) {
+  els.searchInput.addEventListener("input", () => {
+    resetPointsLimit();
+    render();
+  });
+}
+if (els.sortSelect) {
+  els.sortSelect.addEventListener("change", () => {
+    state.sort = els.sortSelect.value;
+    resetPointsLimit();
+    render();
+  });
+}
 
 els.walletLoadMore?.addEventListener("click", () => {
   state.pointsVisibleCount += LIST_PAGE_SIZE;
