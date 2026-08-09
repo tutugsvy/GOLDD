@@ -227,10 +227,10 @@
               <div class="ca-panel" aria-label="Token contract address">
                 <span class="ca-label">$SHIFROGS token contract</span>
                 <div class="ca-row">
-                  <code id="tokenCa">0x…announced at launch</code>
-                  <button class="ca-copy" type="button" data-ca-copy="tokenCa" disabled>Copy</button>
+                  <code id="tokenCa">0x01b7c7E2317304742100Ca29D957F8C0F73a33f1</code>
+                  <button class="ca-copy" type="button" data-ca-copy="tokenCa">Copy</button>
                 </div>
-                <small class="ca-note">SushiSwap pair · Robinhood Chain — CA goes live with the mint contract.</small>
+                <small class="ca-note">SushiSwap pair · Robinhood Chain — verified live.</small>
               </div>
             </div>
           </div>
@@ -403,10 +403,10 @@
       (function () {
         "use strict";
 
-        // ===== CONFIG — isi ini saat contract live =====
+        // ===== CONFIG =====
         var CONFIG = {
-          tokenCA: null, // $SHIFROGS token address
-          nftCA: null,   // SushiFrogs NFT (burn-to-mint) contract address
+          tokenCA: "0x01b7c7E2317304742100Ca29D957F8C0F73a33f1", // $SHIFROGS
+          nftCA: "0xa4fF75953A57D01454076b0cB1b08fb89A2b995a",   // SushiFrogs burn-to-mint
           burnPerFrog: 20000,
           chainId: "0x1237", // Robinhood Chain 4663
           rpc: "https://rpc.mainnet.chain.robinhood.com",
@@ -496,6 +496,38 @@
         }
 
         // ===== mint =====
+        function hexPad32(hex) { return hex.replace(/^0x/, "").padStart(64, "0"); }
+        function encodeApprove(spender, amount) { return "0x095ea7b3" + hexPad32(spender) + hexPad32(amount.toString(16)); }
+        function encodeMint(qty) { return "0xa0712d68" + hexPad32(qty.toString(16)); }
+        function encodeBalance(addr) { return "0x70a08231" + hexPad32(addr); }
+        function encodeAllowance(owner, spender) { return "0xdd62ed3e" + hexPad32(owner) + hexPad32(spender); }
+        function hexToBigInt(hex) { return BigInt(hex); }
+
+        function rpcCall(to, data) {
+          return window.ethereum.request({ method: "eth_call", params: [{ to: to, data: data }, "latest"] });
+        }
+        function sendTx(to, data) {
+          return window.ethereum.request({
+            method: "eth_sendTransaction",
+            params: [{ from: state.account, to: to, data: data }]
+          });
+        }
+        function waitTx(hash) {
+          return new Promise(function (resolve, reject) {
+            var iv = setInterval(function () {
+              fetch(CONFIG.rpc, {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_getTransactionReceipt", params: [hash] })
+              }).then(function (r) { return r.json(); })
+                .then(function (j) {
+                  var rec = j && j.result;
+                  if (rec) { clearInterval(iv); resolve({ status: parseInt(rec.status, 16) }); }
+                }).catch(function () {});
+            }, 3000);
+            setTimeout(function () { clearInterval(iv); resolve(null); }, 120000);
+          });
+        }
+
         function doMint() {
           if (!state.account) {
             setStatus("Connect your wallet first.");
@@ -507,13 +539,46 @@
             ensureChain().then(renderWallet);
             return;
           }
-          if (!CONFIG.nftCA || !CONFIG.tokenCA) {
-            setStatus("The mint contract is still TBD on Robinhood Chain — CA announced via @sushifrogsfun.");
-            return;
-          }
-          // Live path: approve token -> burn-to-mint
-          // (filled when CONFIG is set)
-          setStatus("Mint flow ready — wiring contract ABI next.");
+          if (!window.ethereum) { setStatus("No wallet found."); return; }
+
+          var qty = state.qty;
+          var token = CONFIG.tokenCA, nft = CONFIG.nftCA;
+          var need = BigInt(CONFIG.burnPerFrog * qty) * 1000000000000000000n; // 18 dec
+
+          setStatus("Checking balance…");
+          rpcCall(token, encodeBalance(state.account)).then(function (hex) {
+            var bal = hexToBigInt(hex);
+            if (bal < need) {
+              setStatus("Insufficient $SHIFROGS — need " + (CONFIG.burnPerFrog * qty).toLocaleString() + ", have " + (Number(bal) / 1e18).toLocaleString() + ".");
+              return null;
+            }
+            return rpcCall(token, encodeAllowance(state.account, nft));
+          }).then(function (allowHex) {
+            if (allowHex === null || allowHex === undefined) return null;
+            var allow = hexToBigInt(allowHex);
+            if (allow >= need) return { skipApprove: true };
+            setStatus("Approve $SHIFROGS…");
+            return sendTx(token, encodeApprove(nft, 2n ** 256n - 1n))
+              .then(function (tx) { setStatus("Approve sent: " + tx.slice(0, 10) + "… Waiting…"); return { approveTx: tx }; });
+          }).then(function (r) {
+            if (!r) return;
+            if (r.approveTx) return waitTx(r.approveTx).then(function () { return r; });
+            return r;
+          }).then(function (r) {
+            if (!r) return;
+            setStatus("Minting " + qty + " frog" + (qty > 1 ? "s" : "") + " — burn " + (CONFIG.burnPerFrog * qty).toLocaleString() + " $SHIFROGS…");
+            return sendTx(nft, encodeMint(qty)).then(function (tx) {
+              setStatus("Mint tx: " + tx.slice(0, 10) + "… confirming…");
+              return waitTx(tx);
+            }).then(function (receipt) {
+              if (receipt && receipt.status === 1) setStatus("Frog minted! 🐸 Check your wallet.");
+              else if (receipt) setStatus("Mint tx failed on-chain.");
+              else setStatus("Mint submitted — check your wallet for confirmation.");
+            });
+          }).catch(function (err) {
+            if (err && (err.code === 4001 || /user rejected/i.test(err.message || ""))) setStatus("Transaction rejected in wallet.");
+            else setStatus("Mint error: " + (err && err.message ? err.message.split("\n")[0].slice(0, 80) : err));
+          });
         }
 
         if (walletNavBtn) walletNavBtn.addEventListener("click", connect);
