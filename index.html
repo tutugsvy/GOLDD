@@ -3,534 +3,496 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GOLDEN YOLK — Lay. Hatch. Yield. · Robinhood Chain</title>
-<meta name="description" content="GOLDEN YOLK — 3,333 onchain eggs on Robinhood Chain. Every mint is an egg. Hold it unbroken and it hatches a chick in 3 days, then crows a rooster on day 7, paying daily $YOLK. Every 101st egg is golden — 2x yield forever.">
-<link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='34' r='22' fill='%23ffd166' stroke='%23fff' stroke-width='2'/%3E%3Ccircle cx='26' cy='30' r='3' fill='%2314100a'/%3E%3Ccircle cx='38' cy='30' r='3' fill='%2314100a'/%3E%3Cpath d='M26 36q6 6 12 0' stroke='%2314100a' stroke-width='2.5' fill='none'/%3E%3C/svg%3E">
+<title>GOLDEN YOLK — lay, hatch, yield · Robinhood Chain</title>
+<meta name="description" content="3,333 eggs on Robinhood Chain. Every mint is an egg: hatches a chick in 3 days, crows a rooster in 7. Grown birds lay $YOLK daily. Sell it and the buyer starts over.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Jersey+10&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='17' rx='11' ry='14' fill='%23041104' stroke='%2300c805' stroke-width='2'/%3E%3Ccircle cx='12' cy='14' r='1.5' fill='%2300c805'/%3E%3Ccircle cx='20' cy='14' r='1.5' fill='%2300c805'/%3E%3Cpath d='M12 19q4 4 8 0' stroke='%2300c805' stroke-width='1.6' fill='none'/%3E%3C/svg%3E">
 <style>
 :root{
-  --bg:#0d0a05;
-  --bg-2:#16100a;
-  --surface:rgba(38,28,14,.55);
-  --surface-solid:#171105;
-  --card:#1a130a;
-  --line:rgba(255,214,80,.14);
-  --ink:#fdf6e3;
-  --muted:#c9b48a;
-  --muted-2:#8f7d55;
-  --gold:#ffd166;
-  --gold-deep:#f5a623;
-  --gold-2:#ffb84d;
-  --cream:#fff3d6;
-  --red:#ff7a6e;
-  --green:#7ee2a8;
-  --glow:rgba(255,199,64,.42);
-  --grad-gold:linear-gradient(135deg,#f5a623 0%,#ffd166 45%,#fff3d6 70%,#ffd166 100%);
-  --grad-warm:linear-gradient(135deg,#b3661a,#ffd166);
-  --shadow:0 30px 70px -30px rgba(0,0,0,.8);
-  --font:"Segoe UI",system-ui,-apple-system,sans-serif;
+  --bg0:#0b0b0c;--bg1:#141416;--panel:#161619;--panel2:#1d1d21;--edge:#2c2c31;--edge-hot:#3d3d44;
+  --cream:#f5f5f1;--dim:#9d9d95;--faint:#67675f;
+  --green:#00c805;--rh:#00c805;--green-hi:#3fe046;--green-dk:#008f04;
+  --gold:#ffd84e;--red:#ff6a3d;--blue:#9fd0ff;--ink:#041104;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{font-size:16px;overflow-x:clip;scroll-behavior:smooth}
 body{
-  background:
-    radial-gradient(900px 480px at 85% -10%, rgba(245,166,35,.16), transparent 60%),
-    radial-gradient(700px 420px at -8% 30%, rgba(255,209,102,.08), transparent 55%),
-    var(--bg);
-  color:var(--ink);
-  font-family:var(--font);
-  line-height:1.6;
-  overflow-x:hidden;
+  font-family:IBM Plex Mono,monospace;
+  font-size:clamp(.92rem,.85rem + .3vw,1rem);line-height:1.5;
+  color:var(--cream);
+  background:url("data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22320%22 height%3D%2290%22%3E%3Crect x%3D%2214%22 y%3D%2210%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.5)%22%2F%3E%3Crect x%3D%2240%22 y%3D%2222%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.3)%22%2F%3E%3Crect x%3D%2270%22 y%3D%228%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.45)%22%2F%3E%3Crect x%3D%22100%22 y%3D%2230%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.3)%22%2F%3E%3Crect x%3D%22130%22 y%3D%2214%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.5)%22%2F%3E%3Crect x%3D%22160%22 y%3D%2240%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.25)%22%2F%3E%3Crect x%3D%22190%22 y%3D%226%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.4)%22%2F%3E%3Crect x%3D%22220%22 y%3D%2226%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.3)%22%2F%3E%3Crect x%3D%22250%22 y%3D%2244%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.45)%22%2F%3E%3Crect x%3D%2224%22 y%3D%2250%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.3)%22%2F%3E%3Crect x%3D%22288%22 y%3D%2218%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.35)%22%2F%3E%3Crect x%3D%22305%22 y%3D%2252%22 width%3D%223%22 height%3D%223%22 fill%3D%22rgba(180%2C230%2C180%2C0.25)%22%2F%3E%3C%2Fsvg%3E") repeat-x 0 0;
+  min-height:100vh;
 }
+::-webkit-scrollbar{width:12px}::-webkit-scrollbar-track{background:var(--bg0)}::-webkit-scrollbar-thumb{background:var(--edge);border:3px solid var(--bg0)}
+.jz{font-family:Jersey 10,monospace;font-weight:400}
 a{color:inherit;text-decoration:none}
-.container{max-width:1100px;margin:0 auto;padding:0 22px}
-.badge{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--gold);background:rgba(255,209,102,.08);
-  border:1px solid rgba(255,209,102,.3);
-  padding:7px 14px;border-radius:100px;
+button{font-family:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 16px 80px;position:relative;z-index:2}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  position:sticky;top:0;z-index:80;display:flex;align-items:center;gap:14px;
+  margin:0 -16px;padding:10px 16px;
+  background:rgba(4,15,8,.93);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--edge);
 }
-.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--glow);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-h1,h2{line-height:1.12;letter-spacing:-.02em}
-.section{padding:88px 0}
-.section-tag{font-size:11.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block}
-.section h2{font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:14px}
-.section .lead{color:var(--muted);max-width:640px;margin-bottom:40px;font-size:17px}
-
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:90;
-  background:rgba(13,10,5,.78);backdrop-filter:blur(16px) saturate(1.3);
-  border-bottom:1px solid transparent;transition:border-color .3s,background .3s;
+.logo{display:flex;align-items:center;gap:9px;position:relative;z-index:2}
+.logo .mark{width:24px;height:30px;background:var(--cream);border-radius:50% 50% 46% 46%;border:3px solid var(--green);box-shadow:0 0 16px rgba(0,200,5,.45)}
+.logo b{font-family:Jersey 10,monospace;font-size:1.7rem;color:var(--green);letter-spacing:2px;line-height:1;text-shadow:0 0 14px rgba(0,200,5,.3)}
+.toplinks{display:flex;flex:1 1;gap:2px;overflow-x:auto;scrollbar-width:none}
+.toplinks::-webkit-scrollbar{display:none}
+.toplinks a{font-family:Silkscreen,monospace;font-size:.62rem;color:var(--dim);padding:10px;white-space:nowrap;text-transform:uppercase}
+.toplinks a:hover{color:var(--green)}
+.osbtn2{
+  font-family:Silkscreen,monospace;font-size:.6rem;text-transform:uppercase;
+  color:var(--blue);padding:9px 12px;border-radius:3px;border:2px solid #2e5f8f;background:rgba(32,80,130,.25);
+  white-space:nowrap;
 }
-nav.scrolled{background:rgba(13,10,5,.92);border-bottom:1px solid var(--line)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:.01em}
-.logo .egg{width:34px;height:34px;flex:none}
-.logo small{display:block;font-size:9.5px;font-weight:700;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
-.nav-links{display:flex;gap:4px;align-items:center}
-.nav-links a{font-size:13.5px;font-weight:600;color:var(--muted);padding:8px 13px;border-radius:100px;transition:color .2s}
-.nav-links a:hover{color:var(--ink)}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  font-weight:800;font-size:14px;padding:13px 24px;border-radius:13px;
-  transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;
+.osbtn2:hover{background:rgba(32,80,130,.5)}
+.connect{
+  font-family:Silkscreen,monospace;font-size:.6rem;text-transform:uppercase;font-weight:700;
+  color:var(--ink);background:var(--green);border:none;border-radius:3px;
+  padding:9px 14px;cursor:pointer;box-shadow:0 0 18px rgba(0,200,5,.35);white-space:nowrap;
 }
-.btn-gold{background:var(--grad-gold);color:#1a1005;box-shadow:0 14px 34px -12px var(--glow)}
-.btn-gold:hover{transform:translateY(-3px)}
-.btn-ghost{border:1px solid var(--line);color:var(--ink);background:var(--surface)}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
-.btn-disc{opacity:.55;pointer-events:none}
-@media(max-width:860px){.nav-links{display:none}}
+.connect:disabled{opacity:.45;cursor:not-allowed}
 
-/* HERO */
-.hero{
-  position:relative;padding:158px 0 92px;overflow:hidden;
-  background:
-    radial-gradient(1100px 540px at 80% 0%, rgba(245,166,35,.18), transparent 62%),
-    radial-gradient(700px 460px at 0% 70%, rgba(255,209,102,.07), transparent 55%),
-    var(--bg);
+/* ===== HERO ===== */
+.hero{padding:44px 0 10px;position:relative}
+.hbg{
+  font-family:Jersey 10,monospace;text-transform:uppercase;line-height:.92;
+  color:rgba(245,245,241,.05);user-select:none;pointer-events:none;
 }
-.eggfield{position:absolute;inset:0;pointer-events:none;opacity:.5}
-.eggfield svg{position:absolute;filter:drop-shadow(0 0 6px rgba(255,209,102,.18));animation:floaty 7s ease-in-out infinite}
-@keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--rot,0deg))}50%{transform:translateY(-16px) rotate(var(--rot,0deg))}}
-.hero-inner{position:relative;z-index:2;max-width:760px}
-.hero .badge{margin-bottom:22px}
-.hero h1{font-size:clamp(40px,7vw,74px);font-weight:800;margin-bottom:18px}
-.hero h1 .grad{
-  background:var(--grad-gold);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 0 26px rgba(255,199,64,.25));
+.hbg.x1{font-size:clamp(90px,20vw,180px)}
+.hbg.x2{font-size:clamp(56px,12vw,110px);margin-top:-8px}
+.glow{color:var(--green);text-shadow:0 0 30px rgba(0,200,5,.45);filter:drop-shadow(0 0 22px rgba(0,200,5,.3))}
+.warm-chip{
+  display:inline-block;margin:30px 0 14px;
+  font-family:Silkscreen,monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:1px;
+  color:var(--ink);background:var(--gold);padding:8px 14px;border-radius:3px;
+  box-shadow:0 0 22px rgba(255,216,78,.35);
 }
-.hero p.lead{color:var(--muted);font-size:18px;max-width:560px;margin-bottom:32px}
-.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:38px}
-.hero-trust{display:flex;gap:22px;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--muted);font-weight:600}
-.trust-item .ic{width:32px;height:32px;border-radius:9px;background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.22);display:grid;place-items:center}
+.hero p{color:var(--dim);max-width:640px;font-size:clamp(.92rem,.85rem + .3vw,1.02rem);margin-bottom:8px}
+.hero p b{color:var(--cream);font-weight:700}
 
-/* MARQUEE */
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);overflow:hidden;padding:14px 0}
-.marquee-track{display:flex;white-space:nowrap;width:max-content;animation:scroll 26s linear infinite}
-.marquee-track span{font-weight:700;font-size:14px;color:var(--muted);padding:0 26px;display:flex;align-items:center;gap:26px}
-.marquee-track span::after{content:"🥚";font-size:13px}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* MECH */
-.mech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.mech{
-  background:linear-gradient(180deg,rgba(245,166,35,.07),transparent 55%),var(--card);
-  border:1px solid var(--line);border-radius:20px;padding:26px 20px;
-  position:relative;transition:transform .25s,border-color .25s;
+/* ===== SECTIONS / PANELS ===== */
+.section{margin-top:34px;scroll-margin-top:70px}
+.panel{
+  background:linear-gradient(180deg,rgba(29,29,33,.96),rgba(22,22,25,.96));
+  border:2px solid var(--edge);border-radius:4px;
+  box-shadow:0 10px 30px rgba(0,0,0,.5),inset 0 1px 0 hsla(0,0%,100%,.03);
 }
-.mech:hover{transform:translateY(-5px);border-color:rgba(255,209,102,.45)}
-.mech .day{
-  display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;
-  color:var(--gold);background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.25);
-  padding:4px 11px;border-radius:100px;margin-bottom:16px;
+.panel .head{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:12px 18px;border-bottom:2px solid var(--edge);
 }
-.mech .em{font-size:32px;display:block;margin-bottom:10px;filter:drop-shadow(0 0 10px rgba(255,209,102,.3))}
-.mech b{display:block;font-size:16px;margin-bottom:6px}
-.mech p{font-size:13.5px;color:var(--muted)}
-.mech .yield{display:inline-block;margin-top:12px;font-weight:800;color:var(--cream);background:rgba(255,209,102,.12);padding:6px 12px;border-radius:10px;font-size:13px}
-@media(max-width:960px){.mech-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.mech-grid{grid-template-columns:1fr}}
+.panel .head .t{font-family:Silkscreen,monospace;font-weight:700;font-size:clamp(.66rem,2vw,.8rem);text-transform:uppercase;letter-spacing:1px;color:var(--green)}
+.panel .head .sub{font-size:.68rem;color:var(--faint)}
+.panel .body{padding:18px}
 
-/* EGGS */
-.egg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.egg-card{
-  background:var(--card);border:1px solid var(--line);border-radius:20px;
-  padding:24px 16px;text-align:center;transition:transform .25s,border-color .25s;
+/* ===== MINT ===== */
+.mtabs{position:relative;display:grid;grid-template-columns:1fr 1fr;margin-bottom:16px;background:var(--bg0);border:2px solid var(--edge);border-radius:4px;overflow:visible}
+.mtabs .thumb{position:absolute;top:-2px;bottom:-2px;left:-2px;width:calc(50% + 12px);background:linear-gradient(135deg,var(--green-hi),var(--green) 45%,var(--green-dk));border-radius:4px;transition:transform .28s cubic-bezier(.6,0,.2,1.2);box-shadow:0 0 22px rgba(0,200,5,.25)}
+.mtabs.t1 .thumb{transform:translateX(calc(100% + 12px))}
+.mtabs button{position:relative;z-index:1;background:none;border:none;cursor:pointer;font-family:Silkscreen,monospace;font-weight:700;font-size:clamp(.58rem,2vw,.7rem);text-transform:uppercase;letter-spacing:1px;color:var(--dim);padding:16px 8px;min-height:52px;transition:color .2s}
+.mtabs button.on{color:var(--ink)}
+.mtabs button small{display:block;font-size:.48rem;opacity:.75}
+.mtrack-clip{overflow:hidden}
+.mtrack{display:flex;width:200%;transition:transform .34s cubic-bezier(.6,0,.2,1)}
+.mtrack.t1{transform:translateX(-50%)}
+.mface{width:50%;flex:0 0 50%;padding:2px}
+.raterow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-family:Silkscreen,monospace;font-size:.62rem;color:var(--dim);text-transform:uppercase;padding:8px 6px}
+.raterow b{color:var(--green)}
+.rate-chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 6px 14px}
+.rate-chip{font-size:.72rem;color:var(--dim);border:1px solid var(--edge-hot);border-radius:3px;padding:4px 10px;font-weight:700}
+.rate-chip b{color:var(--cream)}
+.buyrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 6px}
+.buybox{border:1px solid var(--edge-hot);border-radius:4px;padding:12px 14px;background:var(--bg0)}
+.buybox .lb{font-family:Silkscreen,monospace;font-size:.5rem;color:var(--faint);text-transform:uppercase;margin-bottom:4px}
+.buybox .v{font-size:1rem;font-weight:700;color:var(--cream)}
+.buybox .v small{color:var(--faint);font-size:.7rem;font-weight:400}
+.buybox input{width:100%;background:var(--bg1);border:1px solid var(--edge);color:var(--cream);font-family:inherit;font-size:1rem;padding:8px 10px;border-radius:3px;outline:none}
+.buybox input:focus{border-color:var(--green)}
+.btn-buy{
+  margin:14px 6px 0;width:calc(100% - 12px);display:block;
+  font-family:Silkscreen,monospace;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:1px;
+  color:var(--ink);background:var(--green);border:none;border-radius:4px;padding:14px;cursor:pointer;
+  box-shadow:0 0 20px rgba(0,200,5,.3);
 }
-.egg-card:hover{transform:translateY(-5px);border-color:rgba(255,209,102,.5)}
-.egg-card .eg{display:block;margin:0 auto 14px;width:74px;height:88px;filter:drop-shadow(0 10px 22px rgba(0,0,0,.5))}
-.egg-card b{display:block;font-size:15px;margin-bottom:5px}
-.egg-card small{color:var(--muted-2);font-size:12px}
-.egg-card .rar{display:inline-block;margin-top:10px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:100px}
-.rar-common{color:var(--muted);background:rgba(139,125,85,.12);border:1px solid rgba(139,125,85,.3)}
-.rar-rare{color:#8fd0ff;background:rgba(85,155,255,.1);border:1px solid rgba(85,155,255,.3)}
-.rar-epic{color:#c9a7ff;background:rgba(160,110,255,.1);border:1px solid rgba(160,110,255,.3)}
-.rar-gold{color:#1a1005;background:var(--grad-gold)}
-@media(max-width:900px){.egg-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.egg-grid{grid-template-columns:1fr}}
-
-/* GOLDEN */
-.golden{
-  border-radius:26px;padding:44px;overflow:hidden;position:relative;
-  background:
-    radial-gradient(700px 400px at 90% 0%, rgba(255,209,102,.18), transparent 60%),
-    linear-gradient(160deg,rgba(255,209,102,.07),transparent 40%),var(--card);
-  border:1px solid rgba(255,209,102,.3);
-  display:grid;grid-template-columns:1.1fr .9fr;gap:38px;align-items:center;
+.btn-buy:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+.mintrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:38px;height:38px;background:var(--bg0);border:2px solid var(--edge-hot);color:var(--cream);font-size:1.1rem;cursor:pointer;border-radius:3px}
+.qty button:hover{border-color:var(--green);color:var(--green)}
+.qty .q{min-width:44px;text-align:center;font-size:1.1rem;font-weight:700}
+.mint-cta{
+  flex:1;min-width:240px;font-family:Silkscreen,monospace;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:1px;
+  color:var(--ink);background:linear-gradient(135deg,var(--green-hi),var(--green) 55%,var(--green-dk));
+  border:none;border-radius:4px;padding:16px;cursor:not-allowed;opacity:.5;
 }
-.golden::before{content:"";position:absolute;inset:0;border-radius:26px;padding:1px;background:linear-gradient(140deg,rgba(255,209,102,.7),transparent 50%,rgba(255,209,102,.3));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-.golden .big-egg{width:150px;height:178px;margin:0 auto;filter:drop-shadow(0 0 34px rgba(255,209,102,.5))}
-.golden h3{font-size:24px;font-weight:800;margin-bottom:10px}
-.golden p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
-.golden .hl{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--cream);background:rgba(255,209,102,.12);border:1px solid rgba(255,209,102,.3);padding:8px 15px;border-radius:100px;font-size:13.5px}
-.golden ul{margin-top:18px;display:flex;flex-direction:column;gap:9px;list-style:none}
-.golden ul li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
-.golden ul li::before{content:"★";color:var(--gold)}
-@media(max-width:820px){.golden{grid-template-columns:1fr;text-align:center}.golden .hl{margin:0 auto}}
+.mint-cta.on{cursor:pointer;opacity:1;box-shadow:0 0 24px rgba(0,200,5,.35)}
+.mint-meta{display:flex;justify-content:space-between;font-family:Silkscreen,monospace;font-size:.5rem;color:var(--faint);margin-top:10px;text-transform:uppercase}
+.prog{height:14px;background:var(--bg0);border:2px solid var(--edge-hot);border-radius:3px;margin-top:14px;overflow:hidden}
+.prog .fill{height:100%;width:0;background:linear-gradient(90deg,var(--green-dk),var(--green),var(--green-hi));box-shadow:0 0 12px rgba(0,200,5,.45)}
 
-/* CALC */
-.calc{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.calc-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 22px;text-align:center}
-.calc-card .y{font-family:Georgia,serif;font-size:clamp(30px,4.5vw,44px);font-weight:800;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
-.calc-card span{display:block;margin-top:8px;font-size:13px;color:var(--muted);font-weight:700}
-@media(max-width:820px){.calc{grid-template-columns:1fr}}
+/* ===== DIAL ===== */
+.dial{display:grid;grid-template-columns:300px 1fr;grid-gap:22px;gap:22px;align-items:center}
+@media (max-width:820px){.dial{grid-template-columns:1fr}.dial .dsprite{margin:0 auto}}
+.dial .dsprite{width:min(300px,80vw);border:2px solid var(--edge-hot);border-radius:6px;overflow:hidden;box-shadow:0 0 30px rgba(0,200,5,.12)}
+.dial .dsprite svg{width:100%;height:auto;display:block;background:var(--bg0)}
+.dayrange{width:100%;-webkit-appearance:none;appearance:none;height:26px;background:transparent;cursor:pointer;margin:14px 0 0}
+.dayrange::-webkit-slider-runnable-track{height:10px;background:var(--bg0);border:2px solid var(--edge-hot);border-radius:3px}
+.dayrange::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:26px;background:var(--green);border:2px solid var(--green-hi);border-radius:2px;margin-top:-10px;box-shadow:0 0 14px rgba(0,200,5,.6)}
+.dayticks{display:flex;justify-content:space-between;font-family:Silkscreen,monospace;font-size:.5rem;color:var(--faint);margin-top:6px;text-transform:uppercase}
+.daystat{display:flex;justify-content:space-between;font-family:Silkscreen,monospace;font-size:.62rem;color:var(--dim);text-transform:uppercase;padding:10px 14px;background:var(--bg0);border:2px solid var(--edge-hot);border-radius:4px;margin-top:16px}
+.daystat b{color:var(--green);font-size:.9rem}
+.dial p{color:var(--dim);font-size:.9rem}
+.dial p b{color:var(--cream)}
 
-/* STEPS */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 20px;position:relative}
-.step .num{font-family:Georgia,serif;font-size:38px;font-weight:800;line-height:1;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;display:block}
-.step b{display:block;font-size:16px;margin-bottom:8px}
-.step p{font-size:13.5px;color:var(--muted)}
-.step .rule{margin-top:12px;padding-top:12px;border-top:1px dashed rgba(255,209,102,.2);font-size:12.5px;color:var(--muted-2)}
-@media(max-width:960px){.steps{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.steps{grid-template-columns:1fr}}
+/* ===== PAYOUT ===== */
+.payout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.payout-grid{grid-template-columns:1fr}}
+.paybox{background:var(--bg0);border:2px solid var(--edge-hot);border-radius:4px;padding:16px;position:relative}
+.paybox .big{font-family:Jersey 10,monospace;font-size:2.6rem;color:var(--green);line-height:1;text-shadow:0 0 16px rgba(0,200,5,.35)}
+.paybox .big small{font-size:1.2rem;color:var(--cream)}
+.paybox .lb{font-family:Silkscreen,monospace;font-size:.52rem;text-transform:uppercase;color:var(--faint);margin-top:6px}
+.paybox .add{font-size:.78rem;color:var(--dim)}
+.paybox .add button{background:none;border:none;color:var(--green);cursor:pointer;font-size:1rem;padding:0 4px}
+.paybox.gold{border-color:var(--gold)}
+.paybox.gold .big{color:var(--gold);text-shadow:0 0 16px rgba(255,216,78,.4)}
+.paybox.gold::before{content:"GOLD";position:absolute;top:8px;right:8px;font-family:Silkscreen,monospace;font-size:.48rem;color:var(--ink);background:var(--gold);padding:3px 7px;border-radius:2px}
+.payout-note{margin-top:12px;font-size:.8rem;color:var(--faint)}
 
-/* FAQ */
-.faq{max-width:780px;margin:0 auto}
-.faq-item{border:1px solid var(--line);border-radius:15px;margin-bottom:11px;background:var(--card);overflow:hidden}
-.faq-q{width:100%;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 22px;color:var(--ink);font-family:var(--font);font-size:15.5px;font-weight:700;text-align:left}
-.faq-q .chev{color:var(--muted);transition:transform .3s;font-size:15px}
-.faq-item.open .chev{transform:rotate(180deg);color:var(--gold)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
-.faq-a p{padding:0 22px 20px;color:var(--muted);font-size:14px}
+/* ===== FRESH / PREVIEW EGGS ===== */
+.fresh{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.fresh .fitem{min-width:104px;text-align:center}
+.fresh .fitem svg{width:104px;height:auto;border:2px solid var(--edge);border-radius:4px;background:var(--bg0)}
+.fresh .fitem span{font-size:.68rem;color:var(--faint)}
+.fresh .fitem.gold svg{border-color:var(--gold)}
+.fresh .fitem.gold span{color:var(--gold)}
 
-/* CTA */
-.cta{text-align:center;padding:70px 0}
-.cta h2{font-size:clamp(28px,4.6vw,44px);font-weight:800;margin-bottom:14px}
-.cta h2 .grad{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.cta p{color:var(--muted);max-width:520px;margin:0 auto 30px;font-size:16px}
+/* ===== LADDER ===== */
+.ladder{width:100%;border-collapse:collapse}
+.ladder td{padding:10px 6px;border-bottom:1px dashed var(--edge);font-size:.9rem;color:var(--dim)}
+.ladder td b{color:var(--cream)}
+.ladder td:last-child{text-align:right}
+.ladder tr.now td,.ladder tr.now td b{color:var(--green)}
+.ladder tr.done td{color:var(--faint);text-decoration:line-through}
 
-/* FOOTER */
-footer{border-top:1px solid var(--line);background:var(--surface);padding:52px 0 30px}
-.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:42px;margin-bottom:36px}
-.foot-grid h4{font-size:11.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);margin-bottom:14px}
-.foot-grid a{display:block;font-size:14px;color:var(--muted);padding:4px 0;transition:color .2s}
-.foot-grid a:hover{color:var(--gold)}
-.foot-about p{color:var(--muted);font-size:14px;max-width:340px;margin-top:12px}
-.foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted-2)}
-@media(max-width:800px){.foot-grid{grid-template-columns:1fr;gap:26px}}
+/* ===== RULES ===== */
+.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+@media(max-width:700px){.rules{grid-template-columns:1fr}}
+.rule2{display:flex;gap:12px;padding:14px 0;border-bottom:1px dashed var(--edge)}
+.rule2:last-child{border-bottom:none}
+.rule2 .k{flex:0 0 auto;font-family:Silkscreen,monospace;font-size:.52rem;text-transform:uppercase;color:var(--green);border:2px solid var(--edge-hot);padding:6px 8px;height:fit-content;border-radius:2px}
+.rule2.red .k{color:var(--red);border-color:rgba(255,106,61,.4)}
+.rule2.gold .k{color:var(--gold);border-color:rgba(255,216,78,.45)}
+.rule2 .tx{font-size:.86rem;color:var(--dim)}
+.rule2 .tx b{color:var(--cream)}
 
-/* WAFAB */
-.wa-fab{position:fixed;right:20px;bottom:20px;z-index:80;width:54px;height:54px;border-radius:50%;background:var(--grad-gold);display:grid;place-items:center;font-size:24px;color:#1a1005;box-shadow:0 14px 30px -8px var(--glow);transition:transform .2s}
-.wa-fab:hover{transform:scale(1.08)}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+/* ===== COOP / CONNECT ===== */
+.coop-empty{text-align:center;padding:34px 18px}
+.coop-empty .big{font-family:Jersey 10,monospace;font-size:2rem;color:var(--green);text-shadow:0 0 18px rgba(0,200,5,.3)}
+.coop-empty p{color:var(--faint);font-size:.82rem;margin-top:8px}
+
+/* ===== FOOTER ===== */
+footer{border-top:2px solid var(--edge);background:var(--bg1);padding:22px 16px 30px}
+.foot-inner{max-width:1140px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-family:Silkscreen,monospace;font-size:.55rem;color:var(--faint);text-transform:uppercase}
+.foot-inner a{color:var(--dim)}
+.foot-inner a:hover{color:var(--green)}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="navbar">
-  <div class="container nav-inner">
-    <a class="logo" href="#top">
-      <svg class="egg" viewBox="0 0 64 64"><ellipse cx="32" cy="34" rx="21" ry="26" fill="#ffd166" stroke="#fff3d6" stroke-width="1.5"/><circle cx="26" cy="29" r="2.6" fill="#14100a"/><circle cx="38" cy="29" r="2.6" fill="#14100a"/><path d="M26 35q6 6 12 0" stroke="#14100a" stroke-width="2.4" fill="none"/></svg>
-      <span>GOLDEN YOLK<small>Robinhood Chain</small></span>
-    </a>
-    <div class="nav-links">
-      <a href="#mechanic">Mech</a>
-      <a href="#eggs">Eggs</a>
-      <a href="#golden">Golden</a>
-      <a href="#rules">Rules</a>
-      <a href="#faq">FAQ</a>
-    </div>
+<!-- ===== TOPBAR ===== -->
+<nav class="topbar">
+  <a class="logo" href="#top">
+    <span class="mark"></span>
+    <b>GOLDEN YOLK</b>
+  </a>
+  <div class="toplinks">
+    <a href="#mint">BUY $YOLK</a>
+    <a href="#mint">MINT</a>
+    <a href="#payout">PAYOUT</a>
+    <a href="#coop">MY COOP</a>
+    <a href="#ladder">PRICES</a>
+    <a href="https://opensea.io/" target="_blank" rel="noopener">OPENSEA</a>
   </div>
+  <button class="connect" id="connectBtn" disabled>CONNECT</button>
 </nav>
 
-<!-- HERO -->
-<header class="hero" id="top">
-  <div class="eggfield" id="eggfield"></div>
-  <div class="container hero-inner">
-    <span class="badge"><span class="dot"></span> 3,333 eggs · Robinhood Chain</span>
-    <h1>Every egg<br><span class="grad">is a tiny farm.</span></h1>
-    <p class="lead">Mint an egg with a fixed amount of $YOLK. Hold it unbroken and it hatches into a chick in 3 days — paying daily — then crows a rooster on day 7 at more than double the rate. Same start for everyone. Patience is the only rarity.</p>
-    <div class="hero-actions">
-      <a class="btn btn-gold btn-disc" href="#mint">MINT YOUR EGG — SOON</a>
-      <a class="btn btn-ghost" href="#mechanic">How it works</a>
-    </div>
-    <div class="hero-trust">
-      <div class="trust-item"><span class="ic">🥚</span> Burn-to-mint</div>
-      <div class="trust-item"><span class="ic">⏱️</span> No staking, no lockup</div>
-      <div class="trust-item"><span class="ic">★</span> Golden birds pay 2x</div>
-    </div>
-  </div>
-</header>
+<div class="wrap" id="top">
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track" id="marqueeTrack">
-    <span>EVERY 101st EGG IS GOLDEN — 2X YIELD FOREVER</span>
-    <span>HATCH ON DAY 3 — CHICK PAYS 5 $YOLK / DAY</span>
-    <span>CROW ON DAY 7 — ROOSTER PAYS 12 $YOLK / DAY</span>
-    <span>SELLING RESETS THE BIRD TO A SHELL</span>
-    <span>MINTS ARE FIRST-COME-FIRST-SERVED — EARLIER = CHEAPER</span>
-    <span>EVERY 101st EGG IS GOLDEN — 2X YIELD FOREVER</span>
-    <span>HATCH ON DAY 3 — CHICK PAYS 5 $YOLK / DAY</span>
-    <span>CROW ON DAY 7 — ROOSTER PAYS 12 $YOLK / DAY</span>
-    <span>SELLING RESETS THE BIRD TO A SHELL</span>
-    <span>MINTS ARE FIRST-COME-FIRST-SERVED — EARLIER = CHEAPER</span>
-  </div>
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="hbg x1">LAY. HATCH.</div>
+    <div class="hbg x2"><span class="glow">YIELD.</span></div>
+    <div>
+      <span class="warm-chip">⚡ WARMING UP — MINT OPENS SOON</span>
+    </div>
+    <p>3,333 eggs on Robinhood Chain. Every mint is an egg.</p>
+    <p>Hold it unbroken and it hatches a <b>chick</b> in <b>3 days</b> — laying <b>5 $YOLK a day</b> — then crows a <b>rooster on day 7</b> at <b>12 a day</b>. Sell it, and the buyer starts from the shell.</p>
+  </header>
+
+  <!-- ===== MINT ===== -->
+  <section class="section" id="mint">
+    <div class="panel">
+      <div class="head">
+        <span class="t">STEP 1 — GET $YOLK</span>
+        <span class="sub">ETH IN, FEED OUT</span>
+      </div>
+      <div class="body">
+        <div class="mtabs" id="mtabs">
+          <div class="thumb"></div>
+          <button class="on" onclick="tab(0)">BUY $YOLK<small>ETH / USD</small></button>
+          <button onclick="tab(1)">LAY EGGS<small>BURN FEED, MINT BIRDS</small></button>
+        </div>
+        <div class="mtrack-clip">
+          <div class="mtrack" id="mtrack">
+            <!-- FACE 0 — BUY -->
+            <div class="mface">
+              <div class="raterow"><span>RATE</span><b>$1 = 10,000 $YOLK</b></div>
+              <div class="rate-chips">
+                <span class="rate-chip">15,000 <b>$</b><b>1.50</b></span>
+                <span class="rate-chip">35,000 <b>$</b><b>3.50</b></span>
+                <span class="rate-chip">60,000 <b>$</b><b>6.00</b></span>
+                <span class="rate-chip">130,000 <b>$</b><b>13.00</b></span>
+                <span class="rate-chip">350,000 <b>$</b><b>35.00</b></span>
+                <span class="rate-chip">650,000 <b>$</b><b>65.00</b></span>
+              </div>
+              <div class="buyrow">
+                <div class="buybox"><div class="lb">YOU RECEIVE</div><div class="v" id="youReceive">0 $YOLK</div></div>
+                <div class="buybox"><div class="lb">YOU PAY</div><div class="v" id="youPay">$0.00 · ETH</div></div>
+              </div>
+              <button class="btn-buy" id="buyBtn" disabled>BUY $YOLK — SOON</button>
+            </div>
+            <!-- FACE 1 — MINT -->
+            <div class="mface">
+              <div class="buyrow">
+                <div class="buybox" style="grid-column:1/-1">
+                  <div class="lb">BURNS</div>
+                  <div class="v">20,000 $YOLK = <small>1 EGG</small></div>
+                </div>
+              </div>
+              <div class="mintrow" style="margin-top:14px">
+                <div class="qty">
+                  <button onclick="qty(-1)">−</button>
+                  <span class="q" id="qty">1</span>
+                  <button onclick="qty(1)">+</button>
+                </div>
+                <span style="font-size:.7rem;color:var(--faint)">MAX 10 / WALLET</span>
+                <button class="mint-cta" id="mintBtn">MINT 1 EGG — BURN 20,000 $YOLK</button>
+              </div>
+              <div class="mint-meta">
+                <span id="minted">0 LAID</span>
+                <span>3,333 LEFT OF 3,333</span>
+              </div>
+              <div class="prog"><div class="fill" id="progFill"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIFE DIAL ===== -->
+  <section class="section" id="dial">
+    <div class="panel">
+      <div class="head">
+        <span class="t">THE LIFE DIAL</span>
+        <span class="sub">DRAG THE EGG THROUGH ITS LIFE</span>
+      </div>
+      <div class="body">
+        <div class="dial">
+          <div class="dsprite" id="dsprite"></div>
+          <div>
+            <input type="range" class="dayrange" id="dayrange" min="0" max="7" step="0.1" value="0">
+            <div class="dayticks"><span>DAY 0 — LAID</span><span>DAY 3 — HATCH</span><span>DAY 7 — CROW</span></div>
+            <div class="daystat">
+              <span>DAY <b id="dayVal">0.0</b> · STAGE <b id="stageVal">EGG</b></span>
+              <span>LAYING <b id="layingVal">0 $YOLK/DAY</b></span>
+            </div>
+            <p style="margin-top:14px">This is the whole game: hold unbroken and the clock does the work. Sell at any point and the buyer's dial snaps back to day zero.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PAYOUT ===== -->
+  <section class="section" id="payout">
+    <div class="panel">
+      <div class="head">
+        <span class="t">THE PAYOUT PROJECTOR</span>
+        <span class="sub">WHAT YOUR COOP PAYS</span>
+      </div>
+      <div class="body">
+        <div class="payout-grid">
+          <div class="paybox">
+            <div class="big" id="chickVal">15<small> $YOLK</small></div>
+            <div class="lb">EVERY DAY · 3+ BIRDS AS CHICKS — FROM DAY 3</div>
+          </div>
+          <div class="paybox">
+            <div class="big" id="roosterVal">36<small> $YOLK</small></div>
+            <div class="lb">EVERY DAY · 3+ BIRDS AS ROOSTERS — FROM DAY 7</div>
+          </div>
+          <div class="paybox">
+            <div class="big">1,080<small> $YOLK</small></div>
+            <div class="lb">ROOSTER MONTH — 30 DAYS</div>
+          </div>
+        </div>
+        <div class="payout-grid" style="margin-top:12px">
+          <div class="paybox gold" style="grid-column:1/-1">
+            <div class="big">2x<small> FOREVER</small></div>
+            <div class="lb">GOLDEN BIRDS PAY 2X — EVERY 101st EGG (33 EXIST)</div>
+          </div>
+        </div>
+        <p class="payout-note">Paid from the pre-funded nest. Yield starts the moment an egg hatches — no staking, no lockup, gather whenever you like.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PREVIEW ===== -->
+  <section class="section" id="preview">
+    <div class="panel">
+      <div class="head">
+        <span class="t">FIRST LAY GETS #1</span>
+        <span class="sub">PREVIEW BATCH</span>
+      </div>
+      <div class="body">
+        <div class="fresh" id="fresh"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COOP ===== -->
+  <section class="section" id="coop">
+    <div class="panel">
+      <div class="head">
+        <span class="t">MY COOP</span>
+        <span class="sub">NEST OPENS WITH THE FARM</span>
+      </div>
+      <div class="body">
+        <div class="coop-empty">
+          <div class="big">🥚 CONNECT TO SEE YOUR BIRDS</div>
+          <p>The nest opens with the farm. Wallet required to view your coop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LADDER ===== -->
+  <section class="section" id="ladder">
+    <div class="panel">
+      <div class="head">
+        <span class="t">PRICE LADDER</span>
+        <span class="sub">EARLIER = CHEAPER</span>
+      </div>
+      <div class="body">
+        <table class="ladder">
+          <tr><td># 1 – 500</td><td><b>18,000 $YOLK</b></td><td>$ 1.80</td></tr>
+          <tr><td># 501 – 1,500</td><td><b>20,000 $YOLK</b></td><td>$ 2.00</td></tr>
+          <tr><td># 1,501 – 2,500</td><td><b>22,000 $YOLK</b></td><td>$ 2.20</td></tr>
+          <tr><td># 2,501 – 3,333</td><td><b>25,000 $YOLK</b></td><td>$ 2.50</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RULES ===== -->
+  <section class="section" id="rules">
+    <div class="panel">
+      <div class="head">
+        <span class="t">YARD RULES</span>
+      </div>
+      <div class="body">
+        <div class="rules">
+          <div class="rule2"><span class="k">MINT</span><div class="tx">Every mint is an egg. Same start for everyone — patience is the only rarity.</div></div>
+          <div class="rule2"><span class="k">DAY 3</span><div class="tx">It hatches. Chicks lay <b>5 $YOLK a day</b>, automatically, from the nest.</div></div>
+          <div class="rule2"><span class="k">DAY 7</span><div class="tx">It crows. Roosters lay <b>12 $YOLK a day</b> — more than double the chick rate.</div></div>
+          <div class="rule2 red"><span class="k">SELL</span><div class="tx">Selling resets it. A transferred bird arrives as an egg and starts over. The yield belongs to holders.</div></div>
+          <div class="rule2 gold"><span class="k">GOLD</span><div class="tx">Every 101st egg is golden — <b>33 exist</b> — and lays 2x forever, at any stage.</div></div>
+          <div class="rule2"><span class="k">GATHER</span><div class="tx">Collect anytime. Per-bird checkpoints; one tap gathers the whole coop.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
 
-<!-- MECHANIC -->
-<section class="section" id="mechanic">
-  <div class="container">
-    <span class="section-tag reveal">🥚 The Life Dial</span>
-    <h2 class="reveal">Lay. Hatch. Crow.</h2>
-    <p class="lead reveal">The whole game is simple: hold unbroken and the clock does the work. Sell at any point and the buyer snaps back to day zero.</p>
-    <div class="mech-grid">
-      <div class="mech reveal"><span class="day">DAY 0 – 2</span><span class="em">🥚</span><b>Egg</b><p>Your minted egg sits in the coop, quiet. Same start for everyone — patience is the only rarity.</p><span class="yield">0 $YOLK / day</span></div>
-      <div class="mech reveal d1"><span class="day">DAY 3</span><span class="em">🐣</span><b>Hatch</b><p>It hatches. A chick — fragile, but already earning. Yield starts the moment it hatches.</p><span class="yield">5 $YOLK / day</span></div>
-      <div class="mech reveal d2"><span class="day">DAY 7</span><span class="em">🐓</span><b>Crow</b><p>It crows into a rooster — more than double the chick rate. The coop never sleeps.</p><span class="yield">12 $YOLK / day</span></div>
-      <div class="mech reveal d3"><span class="day">ANY TIME</span><span class="em">🧺</span><b>Gather</b><p>Collect anytime. Per-bird checkpoints — one tap gathers the whole coop. No lockup.</p><span class="yield">Claim daily</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- EGGS -->
-<section class="section" id="eggs" style="padding-top:20px">
-  <div class="container">
-    <span class="section-tag reveal">🎨 Egg Catalog</span>
-    <h2 class="reveal">One shell, many coats</h2>
-    <p class="lead reveal">Every egg is procedurally unique — colour, pattern and finish are drawn from its token id. These are the families you'll find in the coop.</p>
-    <div class="egg-grid">
-
-      <div class="egg-card reveal">
-        <svg class="eg" viewBox="0 0 74 88"><ellipse cx="37" cy="44" rx="23" ry="30" fill="#f3ecd8" stroke="#d9cfae" stroke-width="1"/></svg>
-        <b>Plain</b>
-        <small>Clean shell. Day-one classic.</small>
-        <span class="rar rar-common">Common</span>
-      </div>
-
-      <div class="egg-card reveal d1">
-        <svg class="eg" viewBox="0 0 74 88"><ellipse cx="37" cy="44" rx="23" ry="30" fill="#efdfc0" stroke="#d9cfae" stroke-width="1"/><circle cx="27" cy="32" r="2" fill="#a5813c"/><circle cx="44" cy="50" r="2.4" fill="#a5813c"/><circle cx="34" cy="58" r="1.6" fill="#a5813c"/><circle cx="48" cy="32" r="1.7" fill="#a5813c"/><circle cx="28" cy="47" r="1.5" fill="#a5813c"/></svg>
-        <b>Speckled</b>
-        <small>Freckled shell, warm tone.</small>
-        <span class="rar rar-common">Common</span>
-      </div>
-
-      <div class="egg-card reveal d2">
-        <svg class="eg" viewBox="0 0 74 88"><defs><clipPath id="e3"><ellipse cx="37" cy="44" rx="23" ry="30"/></clipPath></defs><ellipse cx="37" cy="44" rx="23" ry="30" fill="#f7e8c8" stroke="#d9cfae" stroke-width="1"/><g clip-path="url(#e3)"><path d="M18 22h9v48h-9zM36 12h8v62h-8zM54 24h9v42h-9z" fill="#c9974e" opacity=".55"/></g></svg>
-        <b>Striped</b>
-        <small>Neat bands, straight back.</small>
-        <span class="rar rar-common">Common</span>
-      </div>
-
-      <div class="egg-card reveal d3">
-        <svg class="eg" viewBox="0 0 74 88"><defs><clipPath id="e4"><ellipse cx="37" cy="44" rx="23" ry="30"/></clipPath></defs><ellipse cx="37" cy="44" rx="23" ry="30" fill="#efe6d8" stroke="#d9cfae" stroke-width="1"/><g clip-path="url(#e4)"><path d="M16 24q10-8 18 2t16-4q6-3 9 4v14a8 8 0 0 1-15 3q-8-8-17 1a11 11 0 0 1-17-5z" fill="#b79554" opacity=".5"/></g></svg>
-        <b>Marble</b>
-        <small>Swirled stone finish.</small>
-        <span class="rar rar-rare">Rare</span>
-      </div>
-
-      <div class="egg-card reveal">
-        <svg class="eg" viewBox="0 0 74 88"><defs><clipPath id="e5"><ellipse cx="37" cy="44" rx="23" ry="30"/></clipPath></defs><ellipse cx="37" cy="44" rx="23" ry="30" fill="#eedfbd" stroke="#d9cfae" stroke-width="1"/><g clip-path="url(#e5)"><path d="M40 20 v10 q-5 5 -2 11" stroke="#7a5a1e" stroke-width="2.4" fill="none"/><path d="M41 24 q4 6 1 12" stroke="#7a5a1e" stroke-width="2" fill="none"/><path d="M38 18 v14" stroke="#b28a3e" stroke-width="2.4" fill="none"/></g></svg>
-        <b>Cracked</b>
-        <small>Due any moment now.</small>
-        <span class="rar rar-rare">Rare</span>
-      </div>
-
-      <div class="egg-card reveal d1">
-        <svg class="eg" viewBox="0 0 74 88"><ellipse cx="37" cy="44" rx="23" ry="30" fill="#b6ffd9" stroke="#7ee2a8" stroke-width="1.5"/><ellipse cx="37" cy="44" rx="17" ry="23" fill="none" stroke="#6bffb4" stroke-width="1.4" opacity=".7"/></svg>
-        <b>Glow</b>
-        <small>Neon shell, faint hum.</small>
-        <span class="rar rar-epic">Epic</span>
-      </div>
-
-      <div class="egg-card reveal d2">
-        <svg class="eg" viewBox="0 0 74 88"><ellipse cx="37" cy="44" rx="23" ry="30" fill="#c9a7ff" stroke="#b78bff" stroke-width="1.5"/><polygon points="37,22 42,36 57,36 45,46 49,60 37,50 25,60 29,46 17,36 32,36" fill="#ffffff" opacity=".45"/></svg>
-        <b>Gemstone</b>
-        <small>Cuts like a jewel.</small>
-        <span class="rar rar-epic">Epic</span>
-      </div>
-
-      <div class="egg-card reveal d3">
-        <svg class="eg" viewBox="0 0 74 88"><defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5a623"/><stop offset=".5" stop-color="#ffd166"/><stop offset="1" stop-color="#fff3d6"/></linearGradient></defs><ellipse cx="37" cy="44" rx="23" ry="30" fill="url(#gold)" stroke="#fff3d6" stroke-width="1.6"/><path d="M24 34q6-7 13 0t13 0" stroke="#fff" stroke-width="2" fill="none" opacity=".7"/><path d="M27 48q5-4 10 0t10 0" stroke="#fff" stroke-width="1.8" fill="none" opacity=".55"/></svg>
-        <b>GOLDEN</b>
-        <small>The rarest bird in the yard.</small>
-        <span class="rar rar-gold">2x Forever</span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- GOLDEN -->
-<section class="section" id="golden" style="padding-top:20px">
-  <div class="container">
-    <div class="golden reveal">
-      <div>
-        <span class="section-tag">★ The Golden Bird</span>
-        <h3>Every 101st egg is golden.</h3>
-        <p>Exactly 33 golden eggs exist out of 3,333 — baked into the contract, not a promise. A golden bird lays at 2x forever, at any stage, and there is no way to forge one.</p>
-        <span class="hl">GOLDEN = 2x YIELD, ALWAYS</span>
-        <ul>
-          <li>33 golden eggs in a 3,333 supply</li>
-          <li>Contract-enforced — every 101st mint slot</li>
-          <li>2x at egg, chick and rooster stage</li>
-          <li>Transfers freely, keeps its golden soul</li>
-        </ul>
-      </div>
-      <svg class="big-egg" viewBox="0 0 150 178">
-        <defs>
-          <radialGradient id="gb" cx=".4" cy=".3" r="1"><stop offset="0" stop-color="#fff3d6"/><stop offset=".45" stop-color="#ffd166"/><stop offset="1" stop-color="#b3661a"/></radialGradient>
-          <radialGradient id="gshine" cx=".3" cy=".2" r=".6"><stop offset="0" stop-color="#ffffff" stop-opacity=".9"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
-        </defs>
-        <ellipse cx="75" cy="89" rx="46" ry="60" fill="url(#gb)" stroke="#fff3d6" stroke-width="2"/>
-        <ellipse cx="75" cy="89" rx="46" ry="60" fill="url(#gshine)"/>
-        <circle cx="62" cy="74" r="5" fill="#14100a"/><circle cx="88" cy="74" r="5" fill="#14100a"/>
-        <path d="M60 92q15 13 30 0" stroke="#14100a" stroke-width="4" fill="none"/>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<!-- CALC -->
-<section class="section" id="projector" style="padding-top:20px">
-  <div class="container">
-    <span class="section-tag reveal">📈 The Payout Projector</span>
-    <h2 class="reveal">What your coop pays</h2>
-    <p class="lead reveal">Yield is paid from the pre-funded nest — it starts counting the moment an egg hatches. No staking, no lockup, gather whenever you like.</p>
-    <div class="calc">
-      <div class="calc-card reveal"><div class="y">15 $YOLK</div><span>Every day · 3+ chicks in your coop</span></div>
-      <div class="calc-card reveal d1"><div class="y">36 $YOLK</div><span>Every day · 3+ roosters in your coop</span></div>
-      <div class="calc-card reveal d2"><div class="y">1,080 $YOLK</div><span>Rooster month · 30 days</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- RULES -->
-<section class="section" id="rules" style="padding-top:20px">
-  <div class="container">
-    <span class="section-tag reveal">📜 Yard Rules</span>
-    <h2 class="reveal">Same start, same clock, everyone</h2>
-    <p class="lead reveal">The contract keeps it honest. These rules are not a road map — they are the mechanics.</p>
-    <div class="steps">
-      <div class="step reveal"><span class="num">01</span><b>Mint</b><p>Every mint is an egg. Burn a fixed amount of $YOLK and the egg is yours.</p><div class="rule">Max 10 eggs per wallet · 3,333 total</div></div>
-      <div class="step reveal d1"><span class="num">02</span><b>Hatch</b><p>Day 3 the egg hatches. Chicks lay 5 $YOLK a day, automatically, from the nest.</p><div class="rule">Yield starts on hatch — not before</div></div>
-      <div class="step reveal d2"><span class="num">03</span><b>Crow</b><p>Day 7 it crows. Roosters lay 12 $YOLK a day — more than double the chick rate.</p><div class="rule">Golden birds lay 2x at any stage</div></div>
-      <div class="step reveal d3"><span class="num">04</span><b>Sell</b><p>Selling resets it. A transferred bird arrives as an egg and starts over. The yield belongs to the holder.</p><div class="rule">Buyer always starts from the shell</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="section" id="faq" style="padding-top:20px">
-  <div class="container">
-    <span class="section-tag reveal">❓ Coop Questions</span>
-    <h2 class="reveal" style="text-align:center">FAQ</h2>
-    <p class="lead reveal" style="text-align:center;margin-left:auto;margin-right:auto">The things everyone asks at the gate.</p>
-    <div class="faq">
-      <div class="faq-item reveal">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>Do I need to stake my egg?</span><span class="chev">▾</span></button>
-        <div class="faq-a"><p>No. There is no staking and no lockup. Yield accrues to the NFT itself — gather it whenever you like, one tap for the whole coop.</p></div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>What happens if I sell my bird?</span><span class="chev">▾</span></button>
-        <div class="faq-a"><p>The new owner receives the NFT as an egg (day 0) and the whole life dial restarts. Yield belongs to the current holder and travels with the token.</p></div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>How is the golden egg chosen?</span><span class="chev">▾</span></button>
-        <div class="faq-a"><p>By mint position — every 101st egg is golden. In a 3,333 supply that is exactly 33 golden eggs, enforced by the contract. They pay 2x forever.</p></div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>Where does the yield come from?</span><span class="chev">▾</span></button>
-        <div class="faq-a"><p>From the pre-funded nest — dedicated $YOLK reserves that back every egg's output. The numbers above assume no more than 3 birds per tier for display.</p></div>
-      </div>
-      <div class="faq-item reveal">
-        <button class="faq-q" onclick="toggleFaq(this)"><span>Can I buy more than one egg?</span><span class="chev">▾</span></button>
-        <div class="faq-a"><p>Yes — up to 10 eggs per wallet. People often stack a few: a couple of chicks feeding while one egg waits to hatch.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta" id="mint">
-  <div class="container">
-    <h2 class="reveal">The nest <span class="grad">opens soon.</span></h2>
-    <p class="reveal">Connect your wallet when mint goes live. First eggs are first-come, first-served — earlier mints are cheaper on the ladder.</p>
-    <a class="btn btn-gold btn-disc reveal" href="#mint">MINT — COMING SOON</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
+<!-- ===== FOOTER ===== -->
 <footer>
-  <div class="container">
-    <div class="foot-grid">
-      <div class="foot-about">
-        <a class="logo" href="#top">
-          <svg class="egg" viewBox="0 0 64 64" width="32" height="32"><ellipse cx="32" cy="34" rx="21" ry="26" fill="#ffd166"/><circle cx="26" cy="29" r="2.6" fill="#14100a"/><circle cx="38" cy="29" r="2.6" fill="#14100a"/><path d="M26 35q6 6 12 0" stroke="#14100a" stroke-width="2.4" fill="none"/></svg>
-          <span>GOLDEN YOLK<small>Robinhood Chain</small></span>
-        </a>
-        <p>3,333 onchain eggs. Lay. Hatch. Yield. A humorous meme project — not financial advice. Every bird is a joke with a job.</p>
-      </div>
-      <div>
-        <h4>Yard</h4>
-        <a href="#mechanic">The Life Dial</a>
-        <a href="#eggs">Egg Catalog</a>
-        <a href="#golden">Golden Birds</a>
-        <a href="#rules">Yard Rules</a>
-      </div>
-      <div>
-        <h4>Find us</h4>
-        <a href="https://x.com/" target="_blank" rel="noopener">Twitter / X — soon</a>
-        <a href="https://opensea.io/" target="_blank" rel="noopener">OpenSea — soon</a>
-        <a href="#faq">Coop Questions</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>© <span id="year"></span> GOLDEN YOLK</span>
-      <span>Robinhood Chain · Contract &amp; CA — TBD</span>
-    </div>
+  <div class="foot-inner">
+    <span>GOLDEN YOLK — ROBINHOOD CHAIN — LAY, HATCH, YIELD</span>
+    <span><a href="https://x.com/" target="_blank" rel="noopener">@GoldenYolkNFT</a> — <a href="https://opensea.io/" target="_blank" rel="noopener">OPENSEA</a> — CA: TBD</span>
   </div>
 </footer>
 
 <script>
-/* floating eggs in hero */
-const field = document.getElementById('eggfield');
-const COLOURS = ['#ffd166','#f3ecd8','#efdfc0','#f7e8c8','#efe6d8','#b6ffd9','#c9a7ff'];
-for(let i=0;i<14;i++){
-  const dim = 18 + Math.random()*30;
-  const e = document.createElement('svg');
-  e.setAttribute('viewBox','0 0 64 64');
-  e.style.width = dim+'px'; e.style.height = (dim*1.16)+'px';
-  e.style.left = (Math.random()*96)+'%';
-  e.style.top = (Math.random()*86)+'%';
-  e.style.setProperty('--rot', (Math.random()*50-25)+'deg');
-  e.style.animationDelay = (Math.random()*5)+'s';
-  e.innerHTML = `<ellipse cx="32" cy="34" rx="21" ry="26" fill="${COLOURS[i%COLOURS.length]}" opacity=".5"/>`;
-  field.appendChild(e);
+/* ——— tabs ——— */
+function tab(i){
+  document.getElementById('mtabs').classList.toggle('t1', i===1);
+  document.getElementById('mtrack').classList.toggle('t1', i===1);
+  document.querySelectorAll('#mtabs button').forEach((b,j)=>b.classList.toggle('on', j===i));
 }
 
-/* navbar */
-const navbar = document.getElementById('navbar');
-addEventListener('scroll', ()=>{ navbar.classList.toggle('scrolled', scrollY>10); }, {passive:true});
-
-/* reveal */
-const io = new IntersectionObserver(es=>{
-  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-/* faq */
-function toggleFaq(btn){
-  const item = btn.parentElement;
-  const body = item.querySelector('.faq-a');
-  const open = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i=>{
-    i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = null;
-  });
-  if(!open){ item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+/* ——— qty ——— */
+let q = 1;
+function qty(d){
+  q = Math.min(10, Math.max(1, q + d));
+  const el = document.getElementById('qty');
+  el.textContent = q;
+  document.getElementById('mintBtn').textContent = `MINT ${q} EGG${q>1?'S':''} — BURN ${(q*20000).toLocaleString()} $YOLK`;
 }
 
-/* year */
-document.getElementById('year').textContent = new Date().getFullYear();
+/* ——— life dial ——— */
+const rng = document.getElementById('dayrange');
+function eggSVG(stage){
+  if(stage === 'CHICK'){
+    return `<svg viewBox="0 0 300 320"><rect width="300" height="320" fill="#0b0b0c"/><circle cx="150" cy="150" r="62" fill="#f5f5f1" stroke="#00c805" stroke-width="4"/><circle cx="128" cy="140" r="7" fill="#041104"/><circle cx="172" cy="140" r="7" fill="#041104"/><path d="M128 168q22 16 44 0" stroke="#041104" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="108" y="180" width="84" height="34" rx="6" fill="#00c805"/><text x="150" y="205" text-anchor="middle" font-family="monospace" font-weight="700" font-size="22" fill="#041104">5/DAY</text><path d="M196 150c34-18 48-46 42-70 26 10 40 38 34 66-28-4-58-2-76 4z" fill="#3fe046" stroke="#00c805" stroke-width="2" opacity=".8"/></svg>`;
+  }
+  if(stage === 'ROOSTER'){
+    return `<svg viewBox="0 0 300 320"><rect width="300" height="320" fill="#0b0b0c"/><path d="M196 150c30-16 44-42 40-66 26 12 40 38 32 66-26-2-52 0-72 0z" fill="#3fe046" stroke="#00c805" stroke-width="2"/><circle cx="150" cy="160" r="58" fill="#f5f5f1" stroke="#00c805" stroke-width="4"/><circle cx="130" cy="150" r="6" fill="#041104"/><circle cx="170" cy="150" r="6" fill="#041104"/><path d="M132 176q18 14 36 0" stroke="#041104" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="112" y="188" width="76" height="30" rx="5" fill="#00c805"/><text x="150" y="210" text-anchor="middle" font-family="monospace" font-weight="700" font-size="20" fill="#041104">12/DAY</text><path d="M112 150l-46-22 26 6-6-24 20 16 10-34 14 34 22-16-8 26 26-8-40 22z" fill="#3fe046" stroke="#00c805" stroke-width="2" opacity=".85"/></svg>`;
+  }
+  if(stage === 'GOLDEN'){
+    return `<svg viewBox="0 0 300 320"><rect width="300" height="320" fill="#0b0b0c"/><ellipse cx="150" cy="165" rx="72" ry="95" fill="#ffd84e" stroke="#f5f5f1" stroke-width="4"/><circle cx="124" cy="150" r="8" fill="#041104"/><circle cx="176" cy="150" r="8" fill="#041104"/><path d="M124 182q26 20 52 0" stroke="#041104" stroke-width="7" fill="none" stroke-linecap="round"/><text x="150" y="120" text-anchor="middle" font-family="monospace" font-weight="700" font-size="30" fill="#041104">2X</text></svg>`;
+  }
+  // egg
+  return `<svg viewBox="0 0 300 320"><rect width="300" height="320" fill="#0b0b0c"/><ellipse cx="150" cy="172" rx="66" ry="92" fill="#f5f5f1" stroke="#00c805" stroke-width="4"/><circle cx="126" cy="158" r="6" fill="#041104"/><circle cx="174" cy="158" r="6" fill="#041104"/><path d="M128 186q22 16 44 0" stroke="#041104" stroke-width="5" fill="none" stroke-linecap="round"/><text x="150" y="125" text-anchor="middle" font-family="monospace" font-weight="700" font-size="22" fill="#00c805">EGG</text><rect x="108" y="215" width="84" height="28" rx="4" fill="none" stroke="#00c805" stroke-width="2" stroke-dasharray="6 4"/><text x="150" y="235" text-anchor="middle" font-family="monospace" font-weight="700" font-size="16" fill="#00c805">0/DAY</text></svg>`;
+}
+function stageOf(d){
+  if(d < 3) return ['EGG', '0 $YOLK/DAY'];
+  if(d < 7) return ['CHICK', '5 $YOLK/DAY'];
+  return ['ROOSTER', '12 $YOLK/DAY'];
+}
+function renderDial(){
+  const d = parseFloat(rng.value);
+  const [st, lay] = stageOf(d);
+  document.getElementById('dayVal').textContent = d.toFixed(1);
+  document.getElementById('stageVal').textContent = st;
+  document.getElementById('layingVal').textContent = lay;
+  document.getElementById('dsprite').innerHTML = (d >= 7) ? eggSVG('ROOSTER') : (d >= 3) ? eggSVG('CHICK') : eggSVG(st === 'GOLDEN' ? 'GOLDEN' : 'EGG');
+  // golden flash on 101st
+  if(Math.abs(d - 101) < 0.05) document.getElementById('dsprite').innerHTML = eggSVG('GOLDEN');
+}
+rng.addEventListener('input', renderDial);
+renderDial();
+
+/* ——— preview eggs ——— */
+const PRE = [
+  ['#f5f5f1','plain'],['#e8e2cf','speck'],['#dfe8d4','stripe'],['#c9d8f5','marble'],
+  ['#f5e6c9','crack'],['#b7ffd0','glow'],['#cfc4ff','gem'],['#ffd84e','GOLD ★']
+];
+const fresh = document.getElementById('fresh');
+PRE.forEach((p,i)=>{
+  const [c,tag] = p;
+  const gold = i === 7;
+  const egg = document.createElement('div');
+  egg.className = 'fitem' + (gold?' gold':'');
+  egg.innerHTML = `<svg viewBox="0 0 104 132"><ellipse cx="52" cy="68" rx="30" ry="42" fill="${c}" stroke="#3d3d44" stroke-width="2"/></svg><span>EGG # ${i+1}${gold?' — GOLDEN':''}</span>`;
+  fresh.appendChild(egg);
+});
 </script>
 </body>
 </html>
