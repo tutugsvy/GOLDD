@@ -502,11 +502,8 @@ const miningAdmin = {
 
 function tabFromHash() {
   if (window.location.hash === "#info") return "info";
-  if (window.location.hash === "#mining") return "mining";
-  if (window.location.hash === "#arcade") return "arcade";
-  if (window.location.hash === "#points") return "points";
-  if (window.location.hash === "#whitelist") return "whitelist";
-  return "mint";
+  if (window.location.hash === "#mint") return "mint";
+  return "home";
 }
 
 function setArcadeScreen(screen = "lobby") {
@@ -539,7 +536,7 @@ function setArcadeScreen(screen = "lobby") {
 }
 
 function setActiveTab(tabName, updateHash = true) {
-  const nextTab = ["mint", "info", "mining", "arcade", "points", "whitelist"].includes(tabName) ? tabName : "mint";
+  const nextTab = ["home", "info", "mint"].includes(tabName) ? tabName : "home";
 
   tabPanels.forEach((panel) => {
     panel.hidden = panel.dataset.tabPanel !== nextTab;
@@ -1695,6 +1692,7 @@ function renderWhitelist() {
 }
 
 function render() {
+  if (!els.walletRows || !els.emptyState) return;
   const wallets = visibleWallets();
   const walletsToRender = wallets.slice(0, state.pointsVisibleCount);
   const pointPool = state.wallets.reduce((sum, wallet) => sum + wallet.points, 0);
@@ -4102,10 +4100,14 @@ async function loadCsv() {
     render();
     renderWhitelist();
   } catch (error) {
-    els.emptyState.hidden = false;
-    els.emptyState.textContent = error.message;
-    els.whitelistEmptyState.hidden = false;
-    els.whitelistEmptyState.textContent = error.message;
+    if (els.emptyState) {
+      els.emptyState.hidden = false;
+      els.emptyState.textContent = error.message;
+    }
+    if (els.whitelistEmptyState) {
+      els.whitelistEmptyState.hidden = false;
+      els.whitelistEmptyState.textContent = error.message;
+    }
   }
 }
 

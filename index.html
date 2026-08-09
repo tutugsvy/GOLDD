@@ -21,15 +21,12 @@
     <main class="app">
       <nav class="site-tabs" aria-label="Website sections">
         <div class="brand-cluster">
-          <a class="brand-mark" href="#mint" data-tab-link="mint">SushiFrogs</a>
+          <a class="brand-mark" href="#home" data-tab-link="home">SushiFrogs</a>
           <button class="info-button" type="button" role="tab" aria-selected="false" aria-controls="infoView" data-tab-target="info">Info</button>
         </div>
         <div class="tab-controls" role="tablist" aria-label="Website tabs">
-          <button class="tab-button is-active" type="button" role="tab" aria-selected="true" aria-controls="mintView" data-tab-target="mint">Mint</button>
-          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="miningView" data-tab-target="mining">Mining</button>
-          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="arcadeView" data-tab-target="arcade">Arcade</button>
-          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="pointsView" data-tab-target="points">Wallet Points</button>
-          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="whitelistView" data-tab-target="whitelist">Whitelist Checker</button>
+          <button class="tab-button is-active" type="button" role="tab" aria-selected="true" aria-controls="homeView" data-tab-target="home">Home</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="mintView" data-tab-target="mint">Mint</button>
         </div>
         <a
           class="share-nav"
@@ -41,39 +38,8 @@
         </a>
       </nav>
 
-      <section class="view mint-view" id="mintView" role="tabpanel" data-tab-panel="mint">
-        <section class="live-mint-panel" aria-label="SushiFrogs mint">
-          <div class="live-mint-copy">
-            <p class="eyebrow">official mint gate</p>
-            <h2>Enter the Temple.</h2>
-            <p>
-              Every mint is a burn-to-mint: each egg of the SushiFrogs collection absorbs 20,000 $SHIFROGS and returns one unbroken frog. Contract is being verified — connect soon.
-            </p>
-            <div class="mint-trust-row" aria-label="Mint details">
-              <span>20,000 $SHIFROGS burn</span>
-              <span>3,333 supply</span>
-              <span>Official link</span>
-            </div>
-          </div>
+      <section class="view home-view" id="homeView" role="tabpanel" data-tab-panel="home">
 
-          <figure class="live-mint-art">
-            <img src="./nft-pfp.jpg" alt="SushiFrogs NFT preview" />
-            <figcaption>Temple specimen</figcaption>
-          </figure>
-
-          <div class="mint-widget-wrap">
-            <p class="eyebrow">mint console</p>
-            <p class="mint-widget-note">Burn-to-mint: 20,000 $SHIFROGS per frog. Mint console unlocks when the contract is live.</p>
-            <div class="mint-widget-card">
-              <span>Mint gate</span>
-              <a class="official-mint-link" href="#mining" data-tab-link="mining" style="pointer-events:none;opacity:.55">
-                <span>CONTRACT TBD — ROBINHOOD CHAIN</span>
-                <small>burn 20,000 $SHIFROGS / frog · 3,333 supply</small>
-              </a>
-              <p class="mint-link-footnote">The mint contract deploys later — the token pair lives on SushiSwap.</p>
-            </div>
-          </div>
-        </section>
 
         <header class="mint-hero" aria-label="SushiFrogs NFT collection">
           <div class="mint-hero-inner">
@@ -87,9 +53,7 @@
             </p>
             <div class="hero-actions">
               <button class="mint-button" type="button" disabled>Burn 20,000 $SHIFROGS</button>
-              <a class="secondary-action" href="#arcade" data-tab-link="arcade">Play Arcade</a>
-              <a class="secondary-action" href="#points" data-tab-link="points">Open Wallet Points</a>
-              <a class="secondary-action" href="#whitelist" data-tab-link="whitelist">Whitelist Checker</a>
+              <a class="secondary-action" href="#mint" data-tab-link="mint">Open Mint Gate</a>
             </div>
           </div>
         </header>
@@ -104,11 +68,6 @@
             <span>$SHIFROGS Supply</span>
             <strong>1B</strong>
             <small>token pool · SushiSwap pair</small>
-          </article>
-          <article>
-            <span>Sushi Vault</span>
-            <strong>79%</strong>
-            <small>owned by treasury</small>
           </article>
           <article>
             <span>Mint Price</span>
@@ -206,473 +165,51 @@
         </section>
       </section>
 
-      <section class="view mining-view" id="miningView" role="tabpanel" data-tab-panel="mining" hidden>
-        <header class="mining-hero" aria-label="The Frog Mining Rig">
-          <div class="mining-hero-copy">
-            <p class="eyebrow">finite distribution protocol</p>
-            <h1>The Frog Mining Rig</h1>
+      <section class="view mint-view" id="mintView" role="tabpanel" data-tab-panel="mint" hidden>
+        <section class="live-mint-panel" aria-label="SushiFrogs mint">
+          <div class="live-mint-copy">
+            <p class="eyebrow">official mint gate</p>
+            <h2>Enter the Temple.</h2>
             <p>
-              Every fifteen minutes, the rig seals a block, selects one Frog from the full 3,333-Frog collection, and attaches a decreasing amount of $SHIFROGS to that Frog.
+              Every mint is a burn-to-mint: each egg of the SushiFrogs collection absorbs 20,000 $SHIFROGS and returns one unbroken frog. Contract is being verified — connect soon.
             </p>
-            <div class="mining-hero-actions">
-              <button class="mining-sound-toggle" id="miningSoundToggle" type="button" aria-pressed="false">Sound Off</button>
-              <a class="secondary-action" href="#info" data-tab-link="info">Read Rules</a>
+            <div class="mint-trust-row" aria-label="Mint details">
+              <span>20,000 $SHIFROGS burn</span>
+              <span>3,333 supply</span>
+              <span>Official link</span>
             </div>
           </div>
 
-          <aside class="mining-cycle-card" aria-label="Current mining cycle">
-            <span id="miningCycleStatus">Rig status: Loading</span>
-            <strong id="miningCycleBlock">Block #000001</strong>
-            <small id="miningCycleCountdown">Syncing server clock...</small>
-            <div class="mining-cycle-meter" aria-hidden="true">
-              <i id="miningCycleMeter"></i>
-            </div>
-          </aside>
-        </header>
-
-        <section class="mining-rig-shell" aria-label="Autonomous Frog mining machine">
-          <div class="mining-rig" id="miningRig">
-            <div class="rig-pipe rig-pipe-a" aria-hidden="true"></div>
-            <div class="rig-pipe rig-pipe-b" aria-hidden="true"></div>
-            <div class="rig-vent rig-vent-a" aria-hidden="true"></div>
-            <div class="rig-vent rig-vent-b" aria-hidden="true"></div>
-
-            <div class="reactor-core" aria-hidden="true">
-              <span></span>
-              <i></i>
-            </div>
-
-            <div class="rig-readout primary">
-              <span>FROG MINING RIG</span>
-              <strong id="miningRigBlock">BLOCK #000001</strong>
-              <small id="miningRigCountdown">Next block in --:--</small>
-            </div>
-
-            <div class="rig-readout reward">
-              <span>Current Reward</span>
-              <strong id="miningCurrentReward">Syncing</strong>
-              <small id="miningNextReward">Backend-confirmed random tier</small>
-            </div>
-
-            <div class="rig-scanner">
-              <span>Scanning Frog ID</span>
-              <strong id="miningScanner">#0000</strong>
-              <small id="miningHashLine">hash: waiting for backend confirmation</small>
-            </div>
-
-            <div class="rig-reveal" id="miningReveal" aria-live="polite">
-              <span id="miningRevealStatus">Waiting for first sealed block</span>
-              <strong id="miningRevealFrog">Frog #----</strong>
-              <small id="miningRevealReward">No reward confirmed yet.</small>
-            </div>
-          </div>
-
-          <aside class="mining-protocol-panel" aria-label="Mining protocol accounting">
-            <p class="eyebrow">protocol accounting</p>
-            <h2>Finite reserve. Randomized emission.</h2>
-            <p>
-              $SHIFROGS is distributed from a finite mining reserve through backend-confirmed daily budgets. Jackpot and gem rewards are hidden inside some blocks.
-            </p>
-            <dl>
-              <div>
-                <dt>Total distributed</dt>
-                <dd id="miningDistributed">0 $SHIFROGS</dd>
-              </div>
-              <div>
-                <dt>Remaining allocation</dt>
-                <dd id="miningRemaining">Syncing</dd>
-              </div>
-              <div>
-                <dt>Daily budget</dt>
-                <dd id="miningReduction">5,000,000 $SHIFROGS</dd>
-              </div>
-              <div>
-                <dt>Blocks completed</dt>
-                <dd id="miningBlocksCompleted">0</dd>
-              </div>
-            </dl>
-          </aside>
-        </section>
-
-        <section class="mining-stats-grid" aria-label="Mining statistics">
-          <article>
-            <span>Total Frogs</span>
-            <strong id="miningTotalFrogs">3,333</strong>
-            <small>full collection</small>
-          </article>
-          <article>
-            <span>Frogs Minted</span>
-            <strong id="miningMintedFrogs">0</strong>
-            <small id="miningMintPercent">from ownership imports</small>
-          </article>
-          <article>
-            <span>Unique Miners</span>
-            <strong id="miningUniqueMiners">0</strong>
-            <small>Frogs with sealed blocks</small>
-          </article>
-          <article>
-            <span>Unpaid $SHIFROGS</span>
-            <strong id="miningUnpaid">0</strong>
-            <small>locked or pending</small>
-          </article>
-          <article>
-            <span>Loaded Unminted</span>
-            <strong id="miningLoadedUnmintedCount">0</strong>
-            <small>reward-bearing Frogs</small>
-          </article>
-          <article>
-            <span>Owned Pending</span>
-            <strong id="miningOwnedPendingCount">0</strong>
-            <small>awaiting payout export</small>
-          </article>
-        </section>
-
-        <section class="mining-leaderboards" aria-label="Mining leaderboards">
-          <article>
-            <div class="section-heading compact">
-              <span>Leaderboard</span>
-              <strong>Richest Frogs</strong>
-            </div>
-            <ol id="miningRichestFrogs"></ol>
-          </article>
-          <article>
-            <div class="section-heading compact">
-              <span>Leaderboard</span>
-              <strong>Most Productive</strong>
-            </div>
-            <ol id="miningProductiveFrogs"></ol>
-          </article>
-          <article class="is-unminted-panel">
-            <div class="section-heading compact">
-              <span>Mint incentive</span>
-              <strong>Loaded but Unminted</strong>
-            </div>
-            <ol id="miningLoadedUnminted"></ol>
-          </article>
-        </section>
-
-        <section class="mining-explorer" aria-label="Frog explorer">
-          <div>
-            <p class="eyebrow">frog explorer</p>
-            <h2>Search any Frog from #1 to #10000.</h2>
-            <p>Rewards belong to the Frog ID first. If an unminted Frog wins, the unpaid reward stays locked inside that exact Frog until it becomes minted.</p>
-          </div>
-          <form class="mining-search" id="miningFrogForm">
-            <label for="miningFrogSearch">Frog ID</label>
-            <input id="miningFrogSearch" type="number" min="1" max="10000" placeholder="1040" />
-            <button class="mining-action" type="submit">View Frog</button>
-          </form>
-          <div class="mining-frog-result" id="miningFrogResult">
-            <span>Search result</span>
-            <strong>Enter a Frog ID to inspect its mining balance.</strong>
-            <p>Frog history will appear here after the server responds.</p>
-          </div>
-        </section>
-
-        <section class="mining-history-panel" aria-label="Block history">
-          <div class="section-heading">
-            <span>Block chain</span>
-            <strong>Latest Sealed Blocks</strong>
-          </div>
-          <div class="mining-history" id="miningHistory"></div>
-          <div class="empty" id="miningHistoryEmpty">No blocks have been sealed yet. The rig is waiting for backend confirmation.</div>
-          <div class="mining-history-controls" aria-label="Mining block pages">
-            <button class="mining-page-button" id="miningBlocksPrev" type="button" aria-label="Previous sealed block page">‹</button>
-            <span id="miningBlocksPage">Page 1 · 12 per page</span>
-            <button class="mining-page-button" id="miningBlocksNext" type="button" aria-label="Next sealed block page">›</button>
-          </div>
-          <div class="load-more-row">
-            <button class="load-more-button" id="miningRefresh" type="button">
-              <strong>Refresh Mining State</strong>
-              <span>server-confirmed blocks only</span>
-            </button>
-          </div>
-        </section>
-
-        <section class="mining-docs" aria-label="How the Frog Mining Rig works">
-          <article>
-            <p class="eyebrow">how the frog mining rig works</p>
-            <h2>Every Frog participates.</h2>
-            <p>
-              The Frog Mining Rig operates continuously in fifteen-minute cycles. At the end of every cycle, the rig seals a new block and selects one Frog from the complete 3,333-Frog collection.
-            </p>
-            <p>
-              Every Frog participates, whether it has already been minted or is still waiting inside the collection. When a Frog mines a block, the block's $SHIFROGS reward becomes attached to that Frog.
-            </p>
-            <p>
-              If the winning Frog already has an owner, its unpaid reward becomes eligible for distribution to the current owner. If the Frog is still unminted, the reward remains locked inside that Frog until someone mints it.
-            </p>
-            <p>
-              Unpaid rewards travel with the Frog. The current owner at the time of payout receives the unpaid balance. Rewards that have already been paid do not transfer with future ownership.
-            </p>
-          </article>
-          <article>
-            <p class="eyebrow">important rule</p>
-            <h2>No browser-side winners.</h2>
-            <p>
-              The countdown uses the server's next block close timestamp. The website never selects a winner locally and never creates new $SHIFROGS tokens. It records distribution from an existing finite mining reserve.
-            </p>
-            <p>
-              Exact "Mint Frog #____" buttons are only shown when exact minting support is configured. Otherwise the page shows a general mint route and warns that random minting cannot guarantee a reward-bearing Frog.
-            </p>
-          </article>
-        </section>
-
-        <section class="mining-admin-panel" aria-label="Protected mining admin console">
-          <div class="section-heading">
-            <span>protected</span>
-            <strong>Admin Mining Console</strong>
-          </div>
-          <p>
-            Only the configured admin wallet can unlock these controls. Protected Netlify Functions verify the signed wallet authorization before any production action runs.
-          </p>
-          <div class="mining-admin-gate" id="miningAdminGate">
-            <div>
-              <span>Admin wallet access</span>
-              <strong id="miningAdminStatus">Locked</strong>
-              <small id="miningAdminStatusNote">Connect and sign with the configured admin wallet.</small>
-            </div>
-            <button class="mining-action" id="miningAdminConnect" type="button">Unlock Admin</button>
-          </div>
-          <div class="mining-admin-private" id="miningAdminPrivate" hidden>
-            <div class="mining-admin-grid">
-              <button class="mining-action" id="miningAdminPause" type="button">Pause Mining</button>
-              <button class="mining-action" id="miningAdminResume" type="button">Resume Mining</button>
-              <button class="mining-action" id="miningAdminMineDue" type="button">Process Due Blocks</button>
-              <button class="mining-action" id="miningAdminSyncHolders" type="button">Sync Holder Snapshot</button>
-              <button class="mining-action" id="miningAdminExportPayouts" type="button">Export Pending Payouts</button>
-            </div>
-            <form class="mining-import-box" id="miningOwnershipForm">
-              <label for="miningOwnershipFilename">Ownership filename</label>
-              <input id="miningOwnershipFilename" type="text" placeholder="ownership.csv" />
-              <label for="miningOwnershipContent">CSV or JSON ownership data</label>
-              <textarea id="miningOwnershipContent" rows="7" placeholder="frogId,ownerWallet,mintAddress,imageUrl,mintUrl"></textarea>
-              <div class="mining-import-actions">
-                <button class="mining-action" id="miningPreviewImport" type="button">Preview Import</button>
-                <button class="mining-action" type="submit">Confirm Import</button>
-              </div>
-            </form>
-          </div>
-          <pre class="mining-admin-output" id="miningAdminOutput">Admin actions will appear here.</pre>
-        </section>
-      </section>
-
-      <section class="view arcade-view" id="arcadeView" role="tabpanel" data-tab-panel="arcade" hidden>
-        <header class="arcade-hero" aria-label="FROG arcade">
-          <div class="arcade-hero-copy">
-            <p class="eyebrow">frog arcade</p>
-            <h1>Frog Arcade</h1>
-            <p>Choose a game, connect when needed, and chase the holder boards. More ridiculous games are on the way.</p>
-            <div class="arcade-chip-row" aria-label="Arcade details">
-              <span>2,000 $SHIFROGS holder prize</span>
-              <span>24hrs board</span>
-              <span>More games soon</span>
-            </div>
-          </div>
-
-          <figure class="arcade-poster">
-            <img src="./nft-manual.jpg" alt="Frog reading the coin manual" />
-            <figcaption>Choose your run</figcaption>
+          <figure class="live-mint-art">
+            <img src="./nft-pfp.jpg" alt="SushiFrogs NFT preview" />
+            <figcaption>Temple specimen</figcaption>
           </figure>
+
+          <div class="mint-widget-wrap">
+            <p class="eyebrow">mint console</p>
+            <p class="mint-widget-note">Burn-to-mint: 20,000 $SHIFROGS per frog. Mint console unlocks when the contract is live.</p>
+            <div class="mint-widget-card">
+              <span>Mint gate</span>
+              <a class="official-mint-link" href="#mint" data-tab-link="mint" style="pointer-events:none;opacity:.55">
+                <span>CONTRACT TBD — ROBINHOOD CHAIN</span>
+                <small>burn 20,000 $SHIFROGS / frog · 3,333 supply</small>
+              </a>
+              <p class="mint-link-footnote">The mint contract deploys later — the token pair lives on SushiSwap.</p>
+            </div>
+          </div>
+        </section>
+        <header class="mint-hero" aria-label="SushiFrogs mint gate" style="flex-direction:column">
+          <div class="mint-hero-inner" style="max-width:100%;text-align:center">
+            <p class="eyebrow mint-eyebrow">burn-to-mint gate</p>
+            <h1>
+              <span>Mint your frog</span>
+              <small>3,333 supply · Robinhood Chain</small>
+            </h1>
+            <p class="mint-lede">
+              The mint console goes live here once the contract is deployed and verified. Burn 20,000 $SHIFROGS per frog.
+            </p>
+          </div>
         </header>
-
-        <section class="arcade-lobby" id="arcadeLobby" aria-label="Arcade game selection">
-          <article class="arcade-game-card is-live">
-            <div>
-              <p class="eyebrow">live game</p>
-              <h2>Frog Dash</h2>
-              <p>Jump logs, collect coins, and push the 24hrs leaderboard. Holder mode scores compete for the daily 2,000 $SHIFROGS prize.</p>
-            </div>
-            <ul class="arcade-game-rules">
-              <li><strong>Prize:</strong> highest HOLDER score in 24hrs wins 2,000 $SHIFROGS.</li>
-              <li><strong>Required:</strong> run in Holder mode so the score is saved as HOLDER.</li>
-              <li><strong>Boost:</strong> more NFTs increase your score multiplier.</li>
-            </ul>
-            <button class="arcade-game-launch" id="arcadeOpenFrogDash" type="button">Play Frog Dash</button>
-          </article>
-
-          <article class="arcade-game-card is-temple">
-            <div>
-              <p class="eyebrow">new temple build</p>
-              <h2>Temple Frog Run</h2>
-              <p>A cinematic lane runner through the frog temple: dodge relics, collect vault coins, and keep the character alive as the temple wakes up.</p>
-            </div>
-            <ul class="arcade-game-rules">
-              <li><strong>Style:</strong> temple corridor, frog relics, coin trails, and faster stages.</li>
-              <li><strong>Moves:</strong> switch lanes, leap broken stone, and slide under temple gates.</li>
-              <li><strong>Status:</strong> beta game, separate from the live Frog Dash prize board.</li>
-            </ul>
-            <button class="arcade-game-launch" id="arcadeOpenTempleRun" type="button">Enter Temple</button>
-          </article>
-
-          <article class="arcade-game-card is-coming">
-            <div>
-              <p class="eyebrow">coming next</p>
-              <h2>More Games</h2>
-              <p>The arcade will expand with new ways for holders and guests to play inside the frog world.</p>
-            </div>
-            <span>Coming soon</span>
-          </article>
-        </section>
-
-        <section class="arcade-shell" id="arcadeGamePanel" aria-label="FROG DASH game" hidden>
-          <div class="arcade-game-brief">
-            <div class="arcade-game-brief-copy">
-              <p class="eyebrow">frog dash</p>
-              <h2>Holder prize: 2,000 $SHIFROGS / 24hrs.</h2>
-              <small class="arcade-prize-note">(prizes may vary in future)</small>
-              <p>Only HOLDER-tagged scores count for prizes. Connect a wallet holding a Frog, choose Holder Run, then dash.</p>
-            </div>
-            <aside class="arcade-prize-panel" aria-label="Current holder prize round">
-              <div class="arcade-prize-live">
-                <span>Current leader</span>
-                <strong id="arcadeCurrentLeader">Waiting for HOLDER run</strong>
-                <small id="arcadeCurrentLeaderScore">HOLDER scores only</small>
-              </div>
-              <div class="arcade-prize-live">
-                <span>Countdown</span>
-                <strong id="arcadeRoundCountdown">24:00:00</strong>
-                <small>until next 24hrs round</small>
-              </div>
-              <div class="arcade-last-winners">
-                <span>Last winner/s</span>
-                <small id="arcadeLastWinners">No closed rounds yet</small>
-              </div>
-              <div class="arcade-multiplier-row" aria-label="Holder multipliers">
-                <span>1 NFT: 1.15x</span>
-                <span>2-3: 1.20x</span>
-                <span>4-5: 1.25x</span>
-                <span>6-10: 1.30x</span>
-                <span>11+: 1.35x</span>
-              </div>
-            </aside>
-          </div>
-
-          <div class="arcade-playfield">
-            <div class="arcade-stage-wrap">
-              <div class="arcade-stage-hud" aria-label="Current run score">
-                <span>Score</span>
-                <strong id="arcadeScore">0</strong>
-                <small id="arcadeLevel">Level 1 · Garden</small>
-              </div>
-              <canvas id="frogDashCanvas" width="960" height="540" aria-label="FROG DASH game canvas"></canvas>
-              <div class="arcade-overlay" id="arcadeOverlay">
-                <span id="arcadeStatus">Ready</span>
-                <strong>HOW FAR CAN YOUR FROG DASH?</strong>
-                <small>Start a run, then tap, click, or press Space to jump.</small>
-              </div>
-            </div>
-
-            <div class="arcade-field-dashboard" aria-label="Arcade scores and leaderboard">
-              <div class="arcade-stat-grid" aria-label="Arcade scores">
-                <article>
-                  <span>Best</span>
-                  <strong id="arcadeBest">0</strong>
-                </article>
-                <article>
-                  <span>24hrs</span>
-                  <strong id="arcadeTodayBest">0</strong>
-                </article>
-                <article>
-                  <span>Mode</span>
-                  <strong id="arcadeMode">Idle</strong>
-                </article>
-              </div>
-
-              <div class="arcade-leaderboard" aria-label="Arcade leaderboard">
-                <div class="arcade-leaderboard-head">
-                  <span id="arcadeLeaderboardTitle">24hrs leaderboard</span>
-                  <div class="arcade-board-tools">
-                    <div class="arcade-board-tabs" role="group" aria-label="Leaderboard range">
-                      <button class="is-active" type="button" data-arcade-board="24h">24hrs</button>
-                      <button type="button" data-arcade-board="all">All Time</button>
-                    </div>
-                    <div class="arcade-board-pages" aria-label="Leaderboard pages">
-                      <button type="button" data-arcade-page="prev" aria-label="Previous leaderboard page">‹</button>
-                      <span id="arcadeLeaderboardPage">1/1</span>
-                      <button type="button" data-arcade-page="next" aria-label="Next leaderboard page">›</button>
-                    </div>
-                  </div>
-                </div>
-                <ol id="arcadeLeaderboard"></ol>
-              </div>
-            </div>
-          </div>
-
-          <aside class="arcade-console" aria-label="FROG DASH controls">
-            <p class="eyebrow">run console</p>
-            <h2>Frog Dash</h2>
-            <p>Live and Guest runs are for fun. Holder Run is the prize lane and saves your score as HOLDER.</p>
-
-            <label class="arcade-player" for="arcadePlayerName">
-              <span>Runner name</span>
-              <input id="arcadePlayerName" type="text" maxlength="36" placeholder="Wallet or name" autocomplete="off" spellcheck="false" />
-            </label>
-
-            <div class="arcade-access-panel" aria-label="Wallet and holder mode">
-              <div class="arcade-access-copy">
-                <span>Wallet gate</span>
-                <strong id="arcadeWalletStatus">Connect wallet to attach runs.</strong>
-                <small id="arcadeHolderStatus">Holder mode unlocks after NFT ownership verification.</small>
-              </div>
-              <div class="arcade-access-actions">
-                <button class="arcade-wallet-button" id="arcadeConnectWallet" type="button">Connect Wallet</button>
-                <button class="arcade-wallet-button" id="arcadeWalletRun" type="button" disabled>Wallet Run</button>
-                <button class="arcade-holder-button" id="arcadeHolderRun" type="button" disabled>Holder Run</button>
-              </div>
-            </div>
-
-            <div class="arcade-actions">
-              <button class="arcade-primary" id="arcadeStart" type="button">Start Run</button>
-            </div>
-
-            <div class="arcade-run-counter" aria-label="Last 24 hours run attempts">
-              <span>Last 24hrs attempts</span>
-              <strong id="arcadeRunAttempts24h">0</strong>
-              <small id="arcadeRunAttemptsNote">public run starts counted live</small>
-            </div>
-          </aside>
-        </section>
-
-        <section class="temple-shell" id="templeGamePanel" aria-label="Temple Frog Run game" hidden>
-          <div class="temple-stage-card">
-            <div class="temple-stage-hud" aria-label="Temple Frog Run score">
-              <span>Temple score</span>
-              <strong id="templeRunScore">0</strong>
-              <small id="templeRunLevel">Level 1 · Outer Gate</small>
-            </div>
-            <canvas id="templeRunCanvas" width="960" height="540" aria-label="Temple Frog Run game canvas"></canvas>
-            <div class="temple-overlay" id="templeRunOverlay">
-              <span id="templeRunStatus">Ready</span>
-              <strong>ENTER THE FROG TEMPLE.</strong>
-              <small>Choose a lane, dodge relics, and collect vault coins.</small>
-            </div>
-          </div>
-
-          <aside class="temple-console" aria-label="Temple Frog Run console">
-            <p class="eyebrow">temple console</p>
-            <h2>Temple Frog Run</h2>
-            <p>A new arcade route with deeper temple visuals, lane movement, jumps, slides, coin trails, and speed stages.</p>
-            <div class="temple-stat-grid" aria-label="Temple Frog Run stats">
-              <article>
-                <span>Best</span>
-                <strong id="templeRunBest">0</strong>
-              </article>
-              <article>
-                <span>Coins</span>
-                <strong id="templeRunCoins">0</strong>
-              </article>
-              <article>
-                <span>Mode</span>
-                <strong id="templeRunMode">Idle</strong>
-              </article>
-            </div>
-            <div class="temple-actions">
-              <button class="arcade-primary" id="templeRunStart" type="button">Start Temple Run</button>
-              <button class="arcade-secondary" id="templeBackToLobby" type="button">Back to Arcade</button>
-            </div>
-          </aside>
-        </section>
       </section>
 
       <section class="view info-view" id="infoView" role="tabpanel" data-tab-panel="info" hidden>
@@ -873,150 +410,7 @@
         </section>
       </section>
 
-      <section class="view points-view" id="pointsView" role="tabpanel" data-tab-panel="points" hidden>
-        <header class="hero">
-          <div class="hero-copy">
-            <p class="eyebrow">SushiFrogs</p>
-            <a
-              class="share-x"
-              href="https://twitter.com/intent/tweet?text=If%20you%20feel%20like%20doing%20something%20ridiculous%2C%20this%20is%20your%20chance.%20More%20info%20at%20sushifrogs.fun%20and%20%40SushiFrogs"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Share on X
-            </a>
-            <h1>Wallet Points</h1>
-            <p class="subtitle">Sender cards sharing a 3,333 point pool from the token transfers indicated to the SushiFrogs treasury.</p>
-          </div>
-
-          <div class="mascot-card" aria-hidden="true">
-            <img class="mascot-image" src="./fr.png" alt="" />
-            <div class="mascot-label">$SHIFROGS</div>
-          </div>
-        </header>
-
-        <section class="stats">
-          <div>
-            <span>Wallets</span>
-            <strong id="walletCount">0</strong>
-          </div>
-          <div>
-            <span>Transfers</span>
-            <strong id="transferCount">0</strong>
-          </div>
-          <div>
-            <span>Point Pool</span>
-            <strong id="topPoints">0</strong>
-          </div>
-        </section>
-
-        <section class="leader-section" aria-label="Top wallets">
-          <div class="section-title">
-            <span>Top senders</span>
-            <strong>Starter Cards</strong>
-          </div>
-          <div class="leader-cards" id="leaderCards"></div>
-        </section>
-
-        <section class="panel">
-          <div class="toolbar">
-            <input id="searchInput" type="search" placeholder="Search wallet..." autocomplete="off" spellcheck="false" />
-            <select id="sortSelect" aria-label="Sort wallets">
-              <option value="points">Points</option>
-              <option value="shifrogs">Total $SHIFROGS</option>
-              <option value="transfers">Transfers</option>
-              <option value="recent">Recent</option>
-            </select>
-          </div>
-
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Rank</th>
-                  <th>Wallet</th>
-                  <th>Points</th>
-                  <th>Total $SHIFROGS</th>
-                  <th>Transfers</th>
-                  <th>Last Transfer</th>
-                </tr>
-              </thead>
-              <tbody id="walletRows"></tbody>
-            </table>
-          </div>
-
-          <div id="emptyState" class="empty">Loading CSV...</div>
-          <div class="load-more-row">
-            <button class="load-more-button" id="walletLoadMore" type="button" hidden>
-              <strong>See More</strong>
-              <span></span>
-            </button>
-          </div>
-        </section>
-      </section>
-
-      <section class="view whitelist-view" id="whitelistView" role="tabpanel" data-tab-panel="whitelist" hidden>
-        <header class="hero whitelist-hero">
-          <div class="hero-copy">
-            <p class="eyebrow">Temple access</p>
-            <h1>Whitelist Checker</h1>
-            <p class="subtitle">Search your wallet and check which mint phase is open for you.</p>
-          </div>
-
-          <div class="whitelist-card" aria-hidden="true">
-            <img class="whitelist-frog" src="./fr2.png" alt="" />
-          </div>
-        </header>
-
-        <section class="whitelist-phases" aria-label="Whitelist phases">
-          <button class="phase-button is-active" type="button" data-phase="phase1">
-            <span>Phase 1</span>
-            <strong id="phaseOneCount">0</strong>
-          </button>
-          <button class="phase-button" type="button" data-phase="phase2">
-            <span>Phase 2</span>
-            <strong>TBA</strong>
-          </button>
-          <button class="phase-button" type="button" data-phase="public">
-            <span>Public Mint</span>
-            <strong>All</strong>
-          </button>
-        </section>
-
-        <section class="panel whitelist-panel">
-          <div class="whitelist-checker">
-            <input id="whitelistSearchInput" type="search" placeholder="Search wallet..." autocomplete="off" spellcheck="false" />
-            <div class="whitelist-result" id="whitelistResult">
-              <span id="whitelistPhaseLabel">Phase 1</span>
-              <strong id="whitelistStatus">Loading whitelist...</strong>
-              <p id="whitelistSummary">Phase 1 uses every wallet already visible in Wallet Points.</p>
-            </div>
-          </div>
-
-          <div class="table-wrap whitelist-table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Phase</th>
-                  <th>Wallet</th>
-                  <th>Status</th>
-                  <th>Booster</th>
-                </tr>
-              </thead>
-              <tbody id="whitelistRows"></tbody>
-            </table>
-          </div>
-
-          <div id="whitelistEmptyState" class="empty">Loading whitelist...</div>
-          <div class="load-more-row">
-            <button class="load-more-button" id="whitelistLoadMore" type="button" hidden>
-              <strong>See More</strong>
-              <span></span>
-            </button>
-          </div>
-        </section>
-      </section>
-    </main>
+</main>
 
     <script src="./app.js?v=20260712-mining-rig"></script>
   </body>
