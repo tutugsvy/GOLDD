@@ -202,11 +202,21 @@
             <p class="mint-widget-note">Burn-to-mint: 20,000 $SHIFROGS per frog. Mint console unlocks when the contract is live.</p>
             <div class="mint-widget-card">
               <span>Mint gate</span>
-              <a class="official-mint-link" href="#mint" data-tab-link="mint" style="pointer-events:none;opacity:.55">
+              <button class="official-mint-link" type="button" id="mintGateButton" aria-expanded="false" aria-controls="mintGateNotice">
                 <span>CONTRACT TBD — ROBINHOOD CHAIN</span>
                 <small>burn 20,000 $SHIFROGS / frog · 3,333 supply</small>
-              </a>
-              <p class="mint-link-footnote">The mint contract deploys later — the token pair lives on SushiSwap.</p>
+              </button>
+              <p class="mint-link-footnote" id="mintGateNotice" hidden>
+                The mint contract deploys later — the token pair lives on SushiSwap. Follow <a href="https://twitter.com/sushifrogsfun" target="_blank" rel="noopener noreferrer">@sushifrogsfun</a> for the CA and gate announcement.
+              </p>
+              <div class="ca-panel" aria-label="Token contract address">
+                <span class="ca-label">$SHIFROGS token contract</span>
+                <div class="ca-row">
+                  <code id="tokenCa">0x…announced at launch</code>
+                  <button class="ca-copy" type="button" data-ca-copy="tokenCa" disabled>Copy</button>
+                </div>
+                <small class="ca-note">SushiSwap pair · Robinhood Chain — CA goes live with the mint contract.</small>
+              </div>
             </div>
           </div>
         </section>
@@ -374,5 +384,34 @@
 </main>
 
     <script src="./app.js?v=20260712-mining-rig"></script>
+    <script>
+      (function () {
+        var gate = document.getElementById("mintGateButton");
+        var notice = document.getElementById("mintGateNotice");
+        if (gate && notice) {
+          gate.addEventListener("click", function () {
+            var isOpen = gate.getAttribute("aria-expanded") === "true";
+            gate.setAttribute("aria-expanded", String(!isOpen));
+            notice.hidden = isOpen;
+          });
+        }
+        var copyBtn = document.querySelector("[data-ca-copy]");
+        if (copyBtn) {
+          copyBtn.addEventListener("click", function () {
+            var target = document.getElementById(copyBtn.dataset.caCopy);
+            if (!target) return;
+            var text = target.textContent.trim();
+            if (!text || text.indexOf("0x…") === 0) return;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(text).then(function () {
+                var old = copyBtn.textContent;
+                copyBtn.textContent = "Copied ✓";
+                setTimeout(function () { copyBtn.textContent = old; }, 1400);
+              });
+            }
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

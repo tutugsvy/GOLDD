@@ -1584,6 +1584,9 @@ button.mining-status-pill:disabled {
     linear-gradient(135deg, rgba(255, 255, 255, 0.34), transparent 45%),
     linear-gradient(135deg, var(--leaf), var(--acid));
   color: var(--ink);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;
   box-shadow: 6px 7px 0 rgba(23, 32, 22, 0.28);
@@ -1599,6 +1602,17 @@ button.mining-status-pill:disabled {
   transform: translateY(-2px) rotate(0.4deg);
   box-shadow: 8px 9px 0 rgba(23, 32, 22, 0.24);
   filter: saturate(1.1);
+}
+
+.official-mint-link:active {
+  transform: translateY(1px) rotate(0.6deg);
+  box-shadow: 2px 3px 0 rgba(23, 32, 22, 0.28);
+}
+
+.official-mint-link[aria-expanded="true"] span {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
 }
 
 .official-mint-link span {
@@ -1619,6 +1633,79 @@ button.mining-status-pill:disabled {
   color: var(--moss);
   font-size: 0.72rem;
   font-weight: 900;
+  line-height: 1.2;
+}
+
+.ca-panel {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 2px dashed var(--moss);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.ca-label {
+  color: var(--moss);
+  font-size: 0.68rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ca-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ca-row code {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  padding: 8px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--mono, ui-monospace, "IBM Plex Mono", monospace);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ca-copy {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--acid);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 2px 3px 0 rgba(23, 32, 22, 0.25);
+}
+
+.ca-copy:disabled {
+  background: #d8d8d0;
+  color: var(--muted);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.ca-copy:not(:disabled):hover {
+  filter: saturate(1.15);
+}
+
+.ca-note {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
   line-height: 1.2;
 }
 
