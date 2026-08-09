@@ -1709,6 +1709,103 @@ button.mining-status-pill:disabled {
   line-height: 1.2;
 }
 
+.wallet-nav {
+  flex: 0 0 auto;
+  padding: 8px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 3px 4px 0 rgba(23, 32, 22, 0.25);
+}
+
+.wallet-nav:hover {
+  filter: saturate(1.15);
+}
+
+.wallet-connect-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 4px 5px 0 rgba(23, 32, 22, 0.25);
+}
+
+.wallet-connect-btn:hover {
+  filter: saturate(1.15);
+}
+
+.wallet-connect-btn .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #c8c8c0;
+  box-shadow: inset 0 0 0 1px rgba(23, 32, 22, 0.35);
+}
+
+.wallet-connect-btn.is-connected .dot {
+  background: var(--acid);
+  box-shadow: 0 0 0 3px rgba(216, 255, 79, 0.45);
+}
+
+.mint-qty-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 6px 0;
+}
+
+.qty-btn {
+  width: 42px;
+  height: 42px;
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1.3rem;
+  font-weight: 950;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 3px 4px 0 rgba(23, 32, 22, 0.25);
+}
+
+.qty-btn:hover {
+  filter: saturate(1.15);
+}
+
+.qty-value {
+  min-width: 46px;
+  font-size: 1.5rem;
+  font-weight: 950;
+  text-align: center;
+}
+
+#mintBtn {
+  justify-self: center;
+}
+
+#mintBtn.is-locked {
+  filter: saturate(0.35);
+}
+
 .mint-hero {
   position: relative;
   width: 100%;

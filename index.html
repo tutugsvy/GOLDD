@@ -36,6 +36,7 @@
         >
           X
         </a>
+        <button class="wallet-nav" type="button" id="walletNavBtn">Connect Wallet</button>
       </nav>
 
       <section class="view home-view" id="homeView" role="tabpanel" data-tab-panel="home">
@@ -199,16 +200,30 @@
 
           <div class="mint-widget-wrap">
             <p class="eyebrow">mint console</p>
-            <p class="mint-widget-note">Burn-to-mint: 20,000 $SHIFROGS per frog. Mint console unlocks when the contract is live.</p>
+            <p class="mint-widget-note">Burn-to-mint: 20,000 $SHIFROGS per frog. Connect your wallet, then mint.</p>
             <div class="mint-widget-card">
               <span>Mint gate</span>
-              <button class="official-mint-link" type="button" id="mintGateButton" aria-expanded="false" aria-controls="mintGateNotice">
-                <span>CONTRACT TBD — ROBINHOOD CHAIN</span>
-                <small>burn 20,000 $SHIFROGS / frog · 3,333 supply</small>
+
+              <button class="wallet-connect-btn" type="button" id="walletConnectBtn">
+                <span class="dot"></span>
+                <span id="walletConnectLabel">Connect Wallet</span>
               </button>
-              <p class="mint-link-footnote" id="mintGateNotice" hidden>
-                The mint contract deploys later — the token pair lives on SushiSwap. Follow <a href="https://twitter.com/sushifrogsfun" target="_blank" rel="noopener noreferrer">@sushifrogsfun</a> for the CA and gate announcement.
+
+              <div class="mint-qty-row" aria-label="Mint quantity">
+                <button class="qty-btn" type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>
+                <strong class="qty-value" id="qtyValue">1</strong>
+                <button class="qty-btn" type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+              </div>
+
+              <button class="official-mint-link" type="button" id="mintBtn">
+                <span>MINT FROG</span>
+                <small id="mintCost">burn 20,000 $SHIFROGS</small>
+              </button>
+
+              <p class="mint-link-footnote" id="mintStatus" role="status">
+                Contract deploys later — follow <a href="https://twitter.com/sushifrogsfun" target="_blank" rel="noopener noreferrer">@sushifrogsfun</a> for the CA and gate announcement.
               </p>
+
               <div class="ca-panel" aria-label="Token contract address">
                 <span class="ca-label">$SHIFROGS token contract</span>
                 <div class="ca-row">
@@ -386,31 +401,145 @@
     <script src="./app.js?v=20260712-mining-rig"></script>
     <script>
       (function () {
-        var gate = document.getElementById("mintGateButton");
-        var notice = document.getElementById("mintGateNotice");
-        if (gate && notice) {
-          gate.addEventListener("click", function () {
-            var isOpen = gate.getAttribute("aria-expanded") === "true";
-            gate.setAttribute("aria-expanded", String(!isOpen));
-            notice.hidden = isOpen;
-          });
-        }
+        "use strict";
+
+        // ===== CONFIG — isi ini saat contract live =====
+        var CONFIG = {
+          tokenCA: null, // $SHIFROGS token address
+          nftCA: null,   // SushiFrogs NFT (burn-to-mint) contract address
+          burnPerFrog: 20000,
+          chainId: "0x1237", // Robinhood Chain 4663
+          rpc: "https://rpc.mainnet.chain.robinhood.com",
+          explorer: "https://robinhoodchain.blockscout.com"
+        };
+
+        var state = { account: null, qty: 1, chainOk: false };
+
+        var $ = function (id) { return document.getElementById(id); };
+        var walletNavBtn = $("walletNavBtn");
+        var connectBtn = $("walletConnectBtn");
+        var connectLabel = $("walletConnectLabel");
+        var qtyMinus = $("qtyMinus"), qtyPlus = $("qtyPlus"), qtyValue = $("qtyValue");
+        var mintBtn = $("mintBtn"), mintCost = $("mintCost"), mintStatus = $("mintStatus");
         var copyBtn = document.querySelector("[data-ca-copy]");
+
+        function fmtAddr(a) { return a ? a.slice(0, 6) + "…" + a.slice(-4) : ""; }
+        function setStatus(text) {
+          if (mintStatus) mintStatus.textContent = text;
+        }
+
+        function renderWallet() {
+          var connected = !!(window.ethereum && state.account);
+          if (walletNavBtn) walletNavBtn.textContent = connected ? fmtAddr(state.account) : "Connect Wallet";
+          if (connectBtn) {
+            connectBtn.classList.toggle("is-connected", connected);
+            if (connectLabel) connectLabel.textContent = connected ? (state.chainOk ? fmtAddr(state.account) : "Wrong network") : "Connect Wallet";
+          }
+          if (connected && mintBtn) {
+            mintBtn.classList.remove("is-locked");
+            setStatus(state.chainOk
+              ? "Burn " + (CONFIG.burnPerFrog * state.qty).toLocaleString() + " $SHIFROGS to mint " + state.qty + " frog" + (state.qty > 1 ? "s" : "") + "."
+              : "Switch to Robinhood Chain to mint.");
+          } else if (mintBtn) {
+            mintBtn.classList.add("is-locked");
+          }
+        }
+
+        function renderCost() {
+          if (qtyValue) qtyValue.textContent = state.qty;
+          if (mintCost) mintCost.textContent = "burn " + (CONFIG.burnPerFrog * state.qty).toLocaleString() + " $SHIFROGS";
+          renderWallet();
+        }
+
+        // ===== connect wallet =====
+        function connect() {
+          if (!window.ethereum) {
+            setStatus("No wallet found — install MetaMask/Rabby and add Robinhood Chain.");
+            return;
+          }
+          window.ethereum.request({ method: "eth_requestAccounts" })
+            .then(function (accounts) {
+              state.account = accounts && accounts[0] ? accounts[0] : null;
+              return ensureChain();
+            })
+            .then(function () {
+              renderWallet();
+              setStatus(state.account && state.chainOk
+                ? "Wallet connected on Robinhood Chain."
+                : "Connected — please switch network.");
+            })
+            .catch(function (err) {
+              if (err && err.code === 4001) setStatus("Connection rejected — approve the wallet request.");
+              else setStatus("Connection failed: " + (err && err.message ? err.message : err));
+            });
+        }
+
+        function ensureChain() {
+          if (!window.ethereum) return Promise.resolve(false);
+          var params = {
+            chainId: CONFIG.chainId,
+            chainName: "Robinhood Chain",
+            nativeCurrency: { name: "Robinhood Ethereum", symbol: "ETH", decimals: 18 },
+            rpcUrls: [CONFIG.rpc],
+            blockExplorerUrls: [CONFIG.explorer]
+          };
+          return window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: CONFIG.chainId }] })
+            .then(function () { state.chainOk = true; })
+            .catch(function (err) {
+              if (err && (err.code === 4902 || /unrecognized chain/i.test(err.message || ""))) {
+                return window.ethereum.request({ method: "wallet_addEthereumChain", params: [params] })
+                  .then(function () { state.chainOk = true; })
+                  .catch(function () { state.chainOk = false; });
+              }
+              state.chainOk = false;
+            });
+        }
+
+        // ===== mint =====
+        function doMint() {
+          if (!state.account) {
+            setStatus("Connect your wallet first.");
+            connect();
+            return;
+          }
+          if (!state.chainOk) {
+            setStatus("Switch to Robinhood Chain first.");
+            ensureChain().then(renderWallet);
+            return;
+          }
+          if (!CONFIG.nftCA || !CONFIG.tokenCA) {
+            setStatus("The mint contract is still TBD on Robinhood Chain — CA announced via @sushifrogsfun.");
+            return;
+          }
+          // Live path: approve token -> burn-to-mint
+          // (filled when CONFIG is set)
+          setStatus("Mint flow ready — wiring contract ABI next.");
+        }
+
+        if (walletNavBtn) walletNavBtn.addEventListener("click", connect);
+        if (connectBtn) connectBtn.addEventListener("click", connect);
+        if (qtyMinus) qtyMinus.addEventListener("click", function () { if (state.qty > 1) { state.qty--; renderCost(); } });
+        if (qtyPlus) qtyPlus.addEventListener("click", function () { if (state.qty < 20) { state.qty++; renderCost(); } });
+        if (mintBtn) mintBtn.addEventListener("click", doMint);
+
+        // copy CA
         if (copyBtn) {
           copyBtn.addEventListener("click", function () {
-            var target = document.getElementById(copyBtn.dataset.caCopy);
+            var target = $("tokenCa");
             if (!target) return;
             var text = target.textContent.trim();
-            if (!text || text.indexOf("0x…") === 0) return;
+            if (!text || text.indexOf("0x\u2026") === 0) return;
             if (navigator.clipboard && navigator.clipboard.writeText) {
               navigator.clipboard.writeText(text).then(function () {
                 var old = copyBtn.textContent;
-                copyBtn.textContent = "Copied ✓";
+                copyBtn.textContent = "Copied \u2713";
                 setTimeout(function () { copyBtn.textContent = old; }, 1400);
               });
             }
           });
         }
+
+        renderCost();
       })();
     </script>
   </body>
